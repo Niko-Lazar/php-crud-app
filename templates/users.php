@@ -43,9 +43,9 @@
                 <td><?php echo $user['email']; ?></td>
                 <td><?php echo $user['role']; ?></td>
                 <td class="row" style="margin: 0;">
-                    <a href="" role="button" class="text-warning mx-1">
+                    <a href="update-user.php?id=<?php echo $user['id']; ?>" role="button" class="text-warning mx-1">
                             <i class="fas fa-edit"></i>
-                        </a>
+                    </a>
                     <button class="icon-btn red mx-1 delete_btn" data-toggle="modal" data-target=#deleteUser<?php echo $user['id']; ?>>
                         <i class="fas fa-trash-alt"></i>
                     </button>

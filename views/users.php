@@ -10,13 +10,14 @@ switch($msg) {
         $msgType = "alert-success";
         break;
     case '1':
+            $msg = "User info updated";
+            $msgType = "alert-warning";
+            break;
+    case '2':
         $msg = "User has been deleted";
         $msgType = "alert-danger";
         break;
-    case '2':
-        $msg = "User info updated";
-        $msgType = "alert-warning";
-        break;
+
     default:
         $msg = "";
         $msgType = "";

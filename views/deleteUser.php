@@ -1,4 +1,4 @@
-<?php include '../config/database.php' ?>
+<?php require '../config/database.php' ?>
 <?php
 
 if($_SERVER["REQUEST_METHOD"] == 'POST') {
@@ -12,7 +12,7 @@ if($_SERVER["REQUEST_METHOD"] == 'POST') {
     if(!$queryIsSuccessful) {
         echo "Error deleting user " . $conn->error;
     }
-    header('Location: ../templates/users.php?user-action=1');
+    header('Location: ../templates/users.php?user-action=2');
     exit();
 }
 
