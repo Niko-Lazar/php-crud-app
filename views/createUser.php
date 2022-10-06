@@ -41,7 +41,7 @@ if(isset($_POST['submit'])) {
         if(!$queryIsSuccessful) {
             echo 'Error ' . mysqli_error($conn);
         }
-        header('Location: ../templates/users.php');
+        header('Location: ../templates/users.php?user-action=0');
         exit();
     }
 }

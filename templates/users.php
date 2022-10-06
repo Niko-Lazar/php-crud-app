@@ -8,6 +8,16 @@
 
  <div class="row">
     <table class="table">
+        <div class="text-success">
+        <?php if(!empty($msg)): ?>
+            <div class="alert <?php echo $msgType; ?> alert-dismissible fade show" role="alert">
+            <strong><?php echo $msg; ?></strong>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+        <?php endif; ?>
+        </div>
         <thead class="thead-dark">
             <tr>
                 <th scope="col">Name</th>

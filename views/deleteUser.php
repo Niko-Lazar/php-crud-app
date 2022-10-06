@@ -12,7 +12,7 @@ if($_SERVER["REQUEST_METHOD"] == 'POST') {
     if(!$queryIsSuccessful) {
         echo "Error deleting user " . $conn->error;
     }
-    header('Location: ../templates/users.php');
+    header('Location: ../templates/users.php?user-action=1');
     exit();
 }
 
