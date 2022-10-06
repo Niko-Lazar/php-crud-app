@@ -42,7 +42,7 @@
                 </td>
             </tr>
             <!-- Modal -->
-            <div class="modal fade" id="deleteUser" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal fade" id="deleteUser<?php echo $user['id']; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-body">
@@ -50,7 +50,7 @@
                     </div>
                     <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Return</button>
-                    <form action="" method="POST">
+                    <form action="../views/deleteUser.php?id=<?php echo $user['id']; ?>" method="POST">
                         <button role="button" class="btn btn-danger">Delete</button  >
                     </form>
                     </div>
