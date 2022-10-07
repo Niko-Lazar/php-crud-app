@@ -36,36 +36,36 @@
         </tr>
         <?php else: ?>
             <?php foreach($users as $user): ?>
-            <tr>
-                <td><?php echo $user['name']; ?></td>
-                <td><?php echo $user['lastName']; ?></td>
-                <td><?php echo $user['email']; ?></td>
-                <td><?php echo $user['role']; ?></td>
-                <td class="row" style="margin: 0;">
-                    <a href="update-user.php?id=<?php echo $user['id']; ?>" role="button" class="text-warning mx-1">
-                            <i class="fas fa-edit"></i>
-                    </a>
-                    <button class="icon-btn red mx-1 delete_btn" data-toggle="modal" data-target=#deleteUser<?php echo $user['id']; ?>>
-                        <i class="fas fa-trash-alt"></i>
-                    </button>
-                </td>
-            </tr>
-            <!-- Modal -->
-            <div class="modal fade" id="deleteUser<?php echo $user['id']; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-body">
-                        Are you sure you want to delete user <?php echo $user['name']; ?> <?php echo $user['lastName']; ?>?
+                <tr>
+                    <td><?php echo $user['name']; ?></td>
+                    <td><?php echo $user['lastName']; ?></td>
+                    <td><?php echo $user['email']; ?></td>
+                    <td><?php echo $user['role']; ?></td>
+                    <td class="row" style="margin: 0;">
+                        <a href="update-user.php?id=<?php echo $user['id']; ?>" role="button" class="text-warning mx-1">
+                                <i class="fas fa-edit"></i>
+                        </a>
+                        <button class="icon-btn red mx-1 delete_btn" data-toggle="modal" data-target=#deleteUser<?php echo $user['id']; ?>>
+                            <i class="fas fa-trash-alt"></i>
+                        </button>
+                    </td>
+                </tr>
+                <!-- Modal -->
+                <div class="modal fade" id="deleteUser<?php echo $user['id']; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            Are you sure you want to delete user <?php echo $user['name']; ?> <?php echo $user['lastName']; ?>?
+                        </div>
+                        <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Return</button>
+                        <form action="../views/deleteUser.php?id=<?php echo $user['id']; ?>" method="POST">
+                            <button role="button" class="btn btn-danger">Delete</button  >
+                        </form>
+                        </div>
                     </div>
-                    <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Return</button>
-                    <form action="../views/deleteUser.php?id=<?php echo $user['id']; ?>" method="POST">
-                        <button role="button" class="btn btn-danger">Delete</button  >
-                    </form>
                     </div>
                 </div>
-                </div>
-            </div>
             <?php endforeach; ?>
         <?php endif; ?>
         </tbody>

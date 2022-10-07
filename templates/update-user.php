@@ -64,9 +64,9 @@
                         </option>
                         <?php foreach(['administrator', 'profesor', 'student'] as $role): ?>
                             <option value=<?php echo $role ?>
-                            <?php echo $user['role'] === $role ? 'selected' : ''; ?>
-                            >
-                            <?php echo ucfirst($role); ?>
+                                <?php echo $user['role'] === $role ? 'selected' : ''; ?>
+                                >
+                                <?php echo ucfirst($role); ?>
                             </option>
                         <?php endforeach; ?>
                     </select>
