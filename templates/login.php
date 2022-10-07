@@ -10,21 +10,21 @@
             <form action="<?php echo $_SERVER["PHP_SELF"]; ?>" method="POST">
                 
                 <?php if($_SERVER["REQUEST_METHOD"] != "GET" && !isset($user)): ?>
-                <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                <strong>No user found</strong>
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                </div>
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <strong>No user found</strong>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    </div>
                 <?php endif; ?>
 
                 <div class="form-group">
                     <label for="email">Email adress</label>
 
                     <?php if(!empty($emailErr)): ?>
-                    <div class="text-danger">
-                        <?php echo $emailErr; ?>
-                    </div>
+                        <div class="text-danger">
+                            <?php echo $emailErr; ?>
+                        </div>
                     <?php endif; ?>
 
                     <input type="email" name="email" class="form-control" required>

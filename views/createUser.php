@@ -15,43 +15,45 @@ if(!isset($_POST['submit'])) {
     return;
 }
 
-if(empty($_POST['name']) || hasOnlyLetters($_POST['name']) === false) {
+if(!$_POST['name'] || !hasOnlyLetters($_POST['name'])) {
     $nameErr = "Please enter a valid name";
 }
-if(empty($_POST['lastName']) || hasOnlyLetters($_POST['lastName']) === false) {
+if(!$_POST['lastName'] || !hasOnlyLetters($_POST['lastName'])) {
     $lastNameErr = "Plase enter a valid last name";
 }
-if(empty($_POST['email'])) {
+if(!$_POST['email']) {
     $emailErr = "Plase enter a valid email";
 }
-if(empty($_POST['password'])) {
+if(!$_POST['password']) {
     $passwordErr = "Plase enter a valid password";
 }
-if(empty($_POST['role']) || hasOnlyLetters($_POST['role']) === false) {
+if(!$_POST['role'] || !hasOnlyLetters($_POST['role'])) {
     $roleErr = "Plase select a role";
 }
 
-$allInputsAreValid = (empty($nameErr) && empty($lastNameErr) && empty($emailErr) && empty($passwordErr) && empty($roleErr));
+$allInputsAreValid = (!$nameErr && !$lastNameErr && !$emailErr && !$passwordErr && !$roleErr);
 
-if($allInputsAreValid) {
-    $name = $_POST['name'];
-    $lastName = $_POST['lastName'];
-    $email = testInput($_POST['email']);
-    $password = testInput($_POST['password']);
-    $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-    $role = $_POST['role'];
-
-    $sql = "INSERT INTO users (name, lastName, email, password, role)" .
-    "VALUES ('$name', '$lastName', '$email', '$hashedPassword', '$role')";
-    
-    $queryIsSuccessful = mysqli_query($conn, $sql);
-
-    if(!$queryIsSuccessful) {
-        echo 'Error ' . mysqli_error($conn);
-    }
-    header('Location: ../templates/users.php?user-action=0');
-    exit();
+if(!$allInputsAreValid) {
+    return;
 }
+
+$name = $_POST['name'];
+$lastName = $_POST['lastName'];
+$email = sanitizeInput($_POST['email']);
+$password = sanitizeInput($_POST['password']);
+$hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+$role = $_POST['role'];
+
+$sql = "INSERT INTO users (name, lastName, email, password, role)" .
+"VALUES ('$name', '$lastName', '$email', '$hashedPassword', '$role')";
+
+$queryIsSuccessful = mysqli_query($conn, $sql);
+
+if(!$queryIsSuccessful) {
+    echo 'Error ' . mysqli_error($conn);
+}
+header('Location: ../templates/users.php?user-action=0');
+exit();
 
 
 ?>

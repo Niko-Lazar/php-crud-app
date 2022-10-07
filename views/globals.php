@@ -1,18 +1,19 @@
 <?php
 
-function testInput($input) {
+function sanitizeInput($input) {
     $input = trim($input);
+
     $input = stripslashes($input);
+
     $input = htmlspecialchars($input);
+
     return $input;
 }
 
 function hasOnlyLetters($input) : bool {
-    $input = testInput($input);
-    if(!preg_match("/^[a-zA-Z-']*$/", $input)) {
-        return false;
-    }
-    return true;
+    $input = sanitizeInput($input);
+    
+    return !!preg_match("/^[a-zA-Z-']*$/", $input);
 }
 
 function loggedIn() : bool {
