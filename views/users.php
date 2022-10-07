@@ -30,14 +30,16 @@ switch($msg) {
         break;
 }
 
-if($_SERVER["REQUEST_METHOD"] == "GET") {
-    $sql = "SELECT * FROM users";
+if($_SERVER["REQUEST_METHOD"] != "GET") {
+   return; 
+}
 
-    $result = mysqli_query($conn, $sql);
+$sql = "SELECT * FROM users";
 
-    if($result) {
-        $users = mysqli_fetch_all($result, MYSQLI_ASSOC);
-    }
+$result = mysqli_query($conn, $sql);
+
+if($result) {
+    $users = mysqli_fetch_all($result, MYSQLI_ASSOC);
 }
 
 

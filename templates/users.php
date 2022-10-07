@@ -34,8 +34,7 @@
                 <?php echo "No users found"; ?>
             </td>
         </tr>
-        <?php endif; ?>
-        <?php if(!empty($users)): ?>
+        <?php else: ?>
             <?php foreach($users as $user): ?>
             <tr>
                 <td><?php echo $user['name']; ?></td>

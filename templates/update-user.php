@@ -56,24 +56,19 @@
 
                     <select name="role" class="form-control">
                         <option value=""
-                        <?php if($user['role'] == ""): ?>
-                            selected
-                        <?php endif; ?>
-                        >--Select role--</option>
-                        <option value="administrator"
-                        <?php if($user['role'] == "administrator"): ?>
-                            selected
-                        <?php endif; ?>
-                        >Administrator</option>
-                        <option value="profesor"
-                        <?php if($user['role'] == "profesor"): ?>
-                            selected
-                        <?php endif; ?>>Profesor</option>
-                        <option value="student"
-                        <?php if($user['role'] == "student"): ?>
-                            selected
-                        <?php endif; ?>
-                        >Student</option>
+                            <?php if($user['role'] == ""): ?>
+                                selected
+                            <?php endif; ?>
+                            >
+                            --Select role--
+                        </option>
+                        <?php foreach(['administrator', 'profesor', 'student'] as $role): ?>
+                            <option value=<?php echo $role ?>
+                            <?php echo $user['role'] === $role ? 'selected' : ''; ?>
+                            >
+                            <?php echo ucfirst($role); ?>
+                            </option>
+                        <?php endforeach; ?>
                     </select>
                 </div>
                 <div class="form-group">
