@@ -7,9 +7,16 @@ function testInput($input) {
     return $input;
 }
 
-function hasOnlyLetters($input) {
+function hasOnlyLetters($input) : bool {
     $input = testInput($input);
     if(!preg_match("/^[a-zA-Z-']*$/", $input)) {
+        return false;
+    }
+    return true;
+}
+
+function loggedIn() : bool {
+    if(empty($_SESSION['loggedUser'])) {
         return false;
     }
     return true;

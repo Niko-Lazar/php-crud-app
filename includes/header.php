@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,7 +30,7 @@
                         <a class="nav-link" href="" tabindex="-1" aria-disabled="true"></a>
                     </li>
                 </ul>
-                <a href="logout.php" class="btn btn-primary">
+                <a href="../views/logout.php" class="btn btn-primary">
                         <i class="fas fa-sign-out-alt"></i>
                 </a>
             </div>

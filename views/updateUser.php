@@ -3,6 +3,11 @@
 
 <?php
 
+if(!loggedIn()) {
+    header('Location: login.php');
+    exit();
+}
+
 $userID = $_REQUEST['id'];
 
 $sql = "SELECT * FROM users WHERE id=${userID}";

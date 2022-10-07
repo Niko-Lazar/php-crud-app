@@ -1,6 +1,11 @@
 <?php require '../config/database.php' ?>
 <?php
 
+if(!loggedIn()) {
+    header('Location: login.php');
+    exit();
+}
+
 if($_SERVER["REQUEST_METHOD"] == 'POST') {
     
     $userID = $_REQUEST['id'];

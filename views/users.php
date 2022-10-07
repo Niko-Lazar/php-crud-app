@@ -1,5 +1,11 @@
 <?php include '../config/database.php' ?>
+<?php require 'globals.php'; ?>
 <?php
+
+if(!loggedIn()) {
+    header('Location: login.php');
+    exit();
+}
 
 $msg = isset($_REQUEST['user-action']) ? $_REQUEST['user-action'] : "";
 $msgType = '';
