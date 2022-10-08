@@ -16,6 +16,12 @@ function hasOnlyLetters($input) : bool {
     return !!preg_match("/^[a-zA-Z-']*$/", $input);
 }
 
+function hasOnlyNumbers($input) : bool {
+    $input = sanitizeInput($input);
+    
+    return !!preg_match('/^\+?\d+$/' , $input);
+}
+
 function loggedIn() : bool {
     if(empty($_SESSION['loggedUser'])) {
         return false;

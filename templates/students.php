@@ -3,7 +3,7 @@
 
 <div class="container">
     <div class="row my-5 justify-content-end">
-        <a href="" role="button" class="btn btn-primary">Create student</a>
+        <a href="../templates/create-student.php" role="button" class="btn btn-primary">Create student</a>
     </div>
 
     <div class="row">
@@ -54,7 +54,10 @@
                                     <div class="modal-content">
                                         
                                         <div class="modal-body">
-                                            Are you sure you want to delete student ?
+                                            Are you sure you want to delete student
+                                            index No. <?php echo $student['indexNumber']; ?>
+                                            <?php echo $student['name']; ?>
+                                            <?php echo $student['lastName']; ?>?
                                         </div>
                                         <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Return</button>
