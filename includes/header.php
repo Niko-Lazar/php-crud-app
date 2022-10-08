@@ -23,7 +23,7 @@
                         <a class="nav-link" href="../templates/users.php"> Users <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href=""></a>
+                        <a class="nav-link" href="../templates/students.php">Students</a>
                     </li>
 
                     <li class="nav-item">
