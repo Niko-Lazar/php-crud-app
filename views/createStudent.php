@@ -59,15 +59,23 @@ $yearOfStudy = $_POST['yearOfStudy'];
 $dateOfBirth = sanitizeInput($_POST['dateOfBirth']);
 $IDnumber = $_POST['IDnumber'];
 
-$sql = "INSERT INTO students (indexNumber, name, parentsName, lastName, email, phoneNumber, yearOfStudy, dateOfBirth, IDnumber)" .
-        "VALUES ('$indexNumber', '$name', '$parentsName', '$lastName', '$email', '$phoneNumber', '$yearOfStudy', '$dateOfBirth', '$IDnumber')";
+$password = "student${indexNumber}";
+$hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
-$queryIsSuccessful = mysqli_query($conn, $sql);
+
+$sql = "INSERT INTO students (indexNumber, name, parentsName, lastName, email, phoneNumber, yearOfStudy, dateOfBirth, IDnumber)" .
+        "VALUES ('$indexNumber', '$name', '$parentsName', '$lastName', '$email', '$phoneNumber', '$yearOfStudy', '$dateOfBirth', '$IDnumber');";
+$sql .= "INSERT INTO users (name, lastName, email, password, role)" .
+        "VALUES ('$name', '$lastName', '$email', '$hashedPassword', 'student');";    
+
+
+$queryIsSuccessful = $conn->multi_query($sql) === TRUE;
 
 
 if(!$queryIsSuccessful) {
     echo 'Error ' . mysqli_error($conn);
 }
+
 header('Location: ../templates/students.php?student-action=0');
 exit();
 

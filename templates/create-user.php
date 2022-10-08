@@ -44,7 +44,6 @@
                         <option selected disabled>-- Select role --</option>
                         <option value="administrator">Administrator</option>
                         <option value="profesor">Profesor</option>
-                        <option value="student">Student</option>
                     </select>
                 </div>
                 <div class="form-group">
