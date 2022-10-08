@@ -27,7 +27,7 @@ if(!$inputIsValid) {
 }
 
 $email = $_POST['email'];
-$password = testInput($_POST['password']);
+$password = sanitizeInput($_POST['password']);
 
 $sql = "SELECT * FROM users WHERE email='${email}'";
 
