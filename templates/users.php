@@ -59,7 +59,7 @@
                         </div>
                         <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Return</button>
-                        <form action="../views/deleteUser.php?id=<?php echo $user['id']; ?>" method="POST">
+                        <form action="../views/deleteUser.php?id=<?php echo $user['id']; ?>&role=<?php echo $user['role']; ?>" method="POST">
                             <button role="button" class="btn btn-danger">Delete</button  >
                         </form>
                         </div>

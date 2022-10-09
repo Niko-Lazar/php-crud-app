@@ -8,6 +8,16 @@
 
     <div class="row">
         <table class="table">
+            <div class="text-success">
+                <?php if(!empty($msg)): ?>
+                    <div class="alert <?php echo $msgType; ?> alert-dismissible fade show" role="alert">
+                    <strong><?php echo $msg; ?></strong>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    </div>
+                <?php endif; ?>
+            </div>
             <form action="" method="GET">
                 <thead class="thead-dark">
                     <tr>
@@ -61,7 +71,7 @@
                                         </div>
                                         <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Return</button>
-                                        <form action="" method="POST">
+                                        <form action="../views/deleteStudent.php?id=<?php echo $student['id']; ?>" method="POST">
                                             <button role="button" class="btn btn-danger">Delete</button  >
                                         </form>
                                         </div>

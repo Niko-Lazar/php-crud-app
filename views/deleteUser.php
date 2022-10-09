@@ -13,15 +13,22 @@ if($_SERVER["REQUEST_METHOD"] != 'POST') {
 }
 
 $userID = $_REQUEST['id'];
+$userRole = $_REQUEST['role'];
 
+$isStudent = ($userRole == 'student') ? true : false;
 
-$sql = "DELETE FROM users WHERE id=${userID}";
+if($isStudent) {
+    $conn->autocommit(FALSE);
 
-$queryIsSuccessful = $conn->query($sql);
+    $conn->query("DELETE FROM students WHERE email = (SELECT email FROM users WHERE id=$userID)");
+    $conn->query("DELETE FROM users WHERE id=${userID}");
 
-if(!$queryIsSuccessful) {
-    echo "Error deleting user " . $conn->error;
+    $conn->commit();
+} else {
+    $conn->query("DELETE FROM users WHERE id=${userID}");
+    $conn->commit();
 }
+$conn -> close();
 
 header('Location: ../templates/users.php?user-action=2');
 exit();
