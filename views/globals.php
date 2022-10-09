@@ -22,6 +22,13 @@ function hasOnlyNumbers($input) : bool {
     return !!preg_match('/^\+?\d+$/' , $input);
 }
 
+function hasOnlyLettersAndNumbers($input) : bool {
+    $input = sanitizeInput($input);
+    
+    return !!preg_match("/^[-a-zA-Z0-9 .]+$/" , $input);
+}
+
+
 function loggedIn() : bool {
     if(empty($_SESSION['loggedUser'])) {
         return false;

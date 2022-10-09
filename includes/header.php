@@ -27,7 +27,7 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="" tabindex="-1" aria-disabled="true"></a>
+                        <a class="nav-link" href="../templates/subjects.php" tabindex="-1" aria-disabled="true">Subjects</a>
                     </li>
                 </ul>
                 <a href="../views/logout.php" class="btn btn-primary">
