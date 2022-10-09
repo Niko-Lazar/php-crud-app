@@ -2,6 +2,16 @@
 <?php require 'globals.php' ?>
 <?php
 
+if(!loggedIn()) {
+    header('Location: login.php');
+    exit();
+}
+
+if(userRole() != "administrator") {
+    header('Location: students.php');
+    exit();
+}
+
 $subjectID = $_REQUEST['id'];
 
 $sql = "SELECT * FROM subjects WHERE id=${subjectID}";

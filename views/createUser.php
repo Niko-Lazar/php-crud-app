@@ -8,6 +8,11 @@ if(!loggedIn()) {
     exit();
 }
 
+if(userRole() != "administrator") {
+    header('Location: students.php');
+    exit();
+}
+
 $name = $lastName = $email = $password = $role = '';
 $nameErr = $lastNameErr = $emailErr = $passwordErr = $roleErr = '';
 

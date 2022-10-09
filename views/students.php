@@ -3,6 +3,16 @@
 
 <?php
 
+if(!loggedIn()) {
+    header('Location: login.php');
+    exit();
+}
+
+if(userRole() == "student") {
+    header('Location: student.php');
+    exit();
+}
+
 $msg = isset($_REQUEST['student-action']) ? $_REQUEST['student-action'] : "";
 $msgType = '';
 

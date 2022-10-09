@@ -3,6 +3,16 @@
 <?php
 session_start();
 
+if(!loggedIn()) {
+    header('Location: login.php');
+    exit();
+}
+
+if(userRole() != "administrator") {
+    header('Location: students.php');
+    exit();
+}
+
 if($_SERVER["REQUEST_METHOD"] != 'POST') {
     return;
 }

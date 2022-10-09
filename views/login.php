@@ -3,6 +3,11 @@
 
 <?php
 
+if(loggedIn()) {
+    header('Location: users.php');
+    exit();
+}
+
 $email = $password = '';
 $emailErr = $passwordErr = '';
 

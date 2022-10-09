@@ -3,6 +3,17 @@
 
 <?php 
 
+if(!loggedIn()) {
+    header('Location: login.php');
+    exit();
+}
+
+if(userRole() != "administrator") {
+    header('Location: students.php');
+    exit();
+}
+
+
 $msg = isset($_REQUEST['subject-action']) ? $_REQUEST['subject-action'] : "";
 $msgType = '';
 

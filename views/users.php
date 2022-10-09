@@ -7,6 +7,13 @@ if(!loggedIn()) {
     exit();
 }
 
+if(userRole() != "administrator") {
+    header('Location: students.php');
+    exit();
+}
+
+
+
 $msg = isset($_REQUEST['user-action']) ? $_REQUEST['user-action'] : "";
 $msgType = '';
 

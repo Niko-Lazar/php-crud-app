@@ -4,6 +4,16 @@
 session_start();
 
 if(!loggedIn()) {
+    header('Location: login.php');
+    exit();
+}
+
+if(userRole() != "administrator") {
+    header('Location: students.php');
+    exit();
+}
+
+if(!loggedIn()) {
     header('Location: ../templates/login.php');
     exit();
 }

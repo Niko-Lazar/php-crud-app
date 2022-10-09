@@ -36,6 +36,9 @@ function loggedIn() : bool {
     return true;
 }
 
+function userRole() : string {
+    return $_SESSION['loggedUser']['role'];
+}
 
 
 ?>

@@ -8,6 +8,11 @@ if(!loggedIn()) {
     exit();
 }
 
+if(userRole() != "administrator") {
+    header('Location: students.php');
+    exit();
+}
+
 $userID = $_REQUEST['id'];
 
 $sql = "SELECT * FROM users WHERE id=${userID}";

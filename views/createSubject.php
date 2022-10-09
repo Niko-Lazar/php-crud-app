@@ -3,6 +3,16 @@
 
 <?php
 
+if(!loggedIn()) {
+    header('Location: login.php');
+    exit();
+}
+
+if(userRole() != "administrator") {
+    header('Location: students.php');
+    exit();
+}
+
 $subjectCode = $name = $yearOfStudy = $ESPB = $mandatory = '';
 $subjectCodeErr = $nameErr = $yearOfStudyErr = $ESPBErr = $mandatoryErr = '';
 
