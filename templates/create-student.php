@@ -1,9 +1,6 @@
 <?php include '../includes/header.php'; ?>
 <?php require '../views/createStudent.php' ?>
 
-
-<?php var_dump($sql); ?>
-
 <div class="container">
     <div class="row justify-content-start">
         <div class="col-lg-6 cl-xs-12">

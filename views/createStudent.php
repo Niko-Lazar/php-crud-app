@@ -69,7 +69,7 @@ $sql .= "INSERT INTO users (name, lastName, email, password, role)" .
         "VALUES ('$name', '$lastName', '$email', '$hashedPassword', 'student');";    
 
 
-$queryIsSuccessful = $conn->multi_query($sql) === TRUE;
+$queryIsSuccessful = $conn->multi_query($sql);
 
 
 if(!$queryIsSuccessful) {
