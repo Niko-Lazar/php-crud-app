@@ -51,7 +51,7 @@
                             </td>
                             <td class="row" style="margin: 0;">
                                 <form action="" method="POST">
-                                    <a href="" role="button" class="text-warning mx-1">
+                                    <a href="update-subject.php?id=<?php echo $subject['id']; ?>" role="button" class="text-warning mx-1">
                                         <i class="fas fa-edit"></i>
                                     </a>
                                 </form>
@@ -69,7 +69,7 @@
                                 </div>
                                 <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Return</button>
-                                <form action="" method="POST">
+                                <form action="../views/deleteSubject.php?id=<?php echo $subject['id']; ?>" method="POST">
                                     <button role="button" class="btn btn-danger">Delete</button  >
                                 </form>
                                 </div>
