@@ -38,7 +38,7 @@ if(!$_POST['newPassword2']) {
 }
 
 if($_POST['newPassword1'] != $_POST['newPassword2']) {
-    $passwordMatchErr = "Plase enter a valid password";
+    $passwordMatchErr = "Passwords do not match";
 }
 
 $allInputsAreValid = (!$oldPasswordErr && !$newPassword1Err && !$newPassword2Err && !$passwordMatchErr);
@@ -47,8 +47,8 @@ if(!$allInputsAreValid) {
     return;
 }
 
-$oldPassword = $_POST['oldPassword'];
-$newPassword1 = $_POST['newPassword1'];
+$oldPassword = sanitizeInput($_POST['oldPassword']);
+$newPassword1 = sanitizeInput($_POST['newPassword1']);
 $hashedPassword = password_hash($newPassword1, PASSWORD_DEFAULT);
 
 $sql = "UPDATE users SET password='$hashedPassword' WHERE id={$_SESSION['loggedUser']['id']}";

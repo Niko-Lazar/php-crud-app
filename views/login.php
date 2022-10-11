@@ -42,8 +42,6 @@ $result = mysqli_query($conn, $sql);
 
 $user = mysqli_fetch_array($result);
 
-$userNotFound = $_SERVER["REQUEST_METHOD"] != "GET" && !isset($user);
-
 if(empty($user)) {
     return;
 }
