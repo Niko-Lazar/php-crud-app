@@ -1,6 +1,6 @@
 <?php
 
-function sanitizeInput($input) {
+function sanitizeInput($input) : string {
     $input = trim($input);
 
     $input = stripslashes($input);

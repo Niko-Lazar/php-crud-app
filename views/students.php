@@ -44,10 +44,10 @@ $sql = "SELECT * FROM students";
 
 $result = mysqli_query($conn, $sql);
 
-if($result) {
-    $students = mysqli_fetch_all($result, MYSQLI_ASSOC);
+if(!$result) {
+    return;
 }
 
-
+$students = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
 ?>

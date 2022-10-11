@@ -48,9 +48,10 @@ if($_SERVER["REQUEST_METHOD"] != "GET") {
  
  $result = mysqli_query($conn, $sql);
  
- if($result) {
-    $subjects = mysqli_fetch_all($result, MYSQLI_ASSOC);
+ if(!$result) {
+    return;
  }
 
+ $subjects = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
 ?>

@@ -16,6 +16,7 @@ $emailErr = $passwordErr = '';
 if($_SERVER["REQUEST_METHOD"] != "POST") {
     return;
 }
+
 if(!isset($_POST["submit"])) {
     return;
 }
@@ -23,6 +24,7 @@ if(!isset($_POST["submit"])) {
 if(!$_POST['email']) {
     $emailErr = "Please enter a valid email";
 }
+
 if(!$_POST['password']) {
     $passwordErr = "Plase enter a valid password";
 }
@@ -34,6 +36,7 @@ if(!$inputIsValid) {
 }
 
 $email = $_POST['email'];
+
 $password = sanitizeInput($_POST['password']);
 
 $sql = "SELECT * FROM users WHERE email='${email}'";

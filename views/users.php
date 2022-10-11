@@ -47,10 +47,10 @@ $sql = "SELECT * FROM users";
 
 $result = mysqli_query($conn, $sql);
 
-if($result) {
-    $users = mysqli_fetch_all($result, MYSQLI_ASSOC);
+if(!$result) {
+    return;
 }
 
-
+$users = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
 ?>

@@ -36,10 +36,12 @@ if($isStudent) {
     $conn->query("DELETE FROM users WHERE id=${userID}");
 
     $conn->commit();
+
 } else {
     $conn->query("DELETE FROM users WHERE id=${userID}");
     $conn->commit();
 }
+
 $conn -> close();
 
 header('Location: ../templates/users.php?user-action=2');

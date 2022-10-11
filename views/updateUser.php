@@ -85,6 +85,7 @@ if($isStudent) {
 if(!$queryIsSuccessful) {
     echo 'Error ' . mysqli_error($conn);
 }
+
 header('Location: ../templates/users.php?user-action=1');
 exit();
 
