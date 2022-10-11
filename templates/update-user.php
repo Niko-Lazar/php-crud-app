@@ -53,23 +53,28 @@
                             <?php echo $roleErr; ?>
                         </div>
                     <?php endif; ?>
-
-                    <select name="role" class="form-control">
-                        <option value=""
-                            <?php if($user['role'] == ""): ?>
-                                selected
-                            <?php endif; ?>
-                            >
-                            --Select role--
-                        </option>
-                        <?php foreach(['administrator', 'profesor'] as $role): ?>
-                            <option value=<?php echo $role ?>
-                                <?php echo $user['role'] === $role ? 'selected' : ''; ?>
+                    <?php if($user['role'] == 'student'): ?>
+                        <select name="role" class="form-control">
+                            <option value="student" selected>Student</option>
+                        </select>
+                    <?php else: ?>
+                        <select name="role" class="form-control">
+                            <option value=""
+                                <?php if($user['role'] == ""): ?>
+                                    selected
+                                <?php endif; ?>
                                 >
-                                <?php echo ucfirst($role); ?>
+                                --Select role--
                             </option>
-                        <?php endforeach; ?>
-                    </select>
+                            <?php foreach(['administrator', 'profesor'] as $role): ?>
+                                <option value=<?php echo $role ?>
+                                    <?php echo $user['role'] === $role ? 'selected' : ''; ?>
+                                    >
+                                    <?php echo ucfirst($role); ?>
+                                </option>
+                            <?php endforeach; ?>
+                        </select>
+                    <?php endif; ?>
                 </div>
                 <div class="form-group">
                     <label for="password">Password</label>

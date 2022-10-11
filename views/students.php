@@ -13,7 +13,10 @@ if(userRole() == "student") {
     exit();
 }
 
-$msg = isset($_REQUEST['student-action']) ? $_REQUEST['student-action'] : "";
+$msg = isset($_REQUEST['student-action'])
+    ? $_REQUEST['student-action']
+    : "";
+    
 $msgType = '';
 
 switch($msg) {

@@ -13,11 +13,6 @@ if(userRole() != "administrator") {
     exit();
 }
 
-if(!loggedIn()) {
-    header('Location: ../templates/login.php');
-    exit();
-}
-
 if($_SERVER["REQUEST_METHOD"] != 'POST') {
     return;
 }

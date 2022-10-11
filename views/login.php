@@ -4,7 +4,7 @@
 <?php
 
 if(loggedIn()) {
-    header('Location: users.php');
+    header('Location: students.php');
     exit();
 }
 

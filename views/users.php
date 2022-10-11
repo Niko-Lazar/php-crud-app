@@ -14,7 +14,9 @@ if(userRole() != "administrator") {
 
 
 
-$msg = isset($_REQUEST['user-action']) ? $_REQUEST['user-action'] : "";
+$msg = isset($_REQUEST['user-action'])
+    ? $_REQUEST['user-action']
+    : "";
 $msgType = '';
 
 switch($msg) {
