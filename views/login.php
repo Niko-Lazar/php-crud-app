@@ -9,7 +9,6 @@ if(loggedIn()) {
 }
 
 $passwordIsReset = !empty($_REQUEST['password-change-success']) && $_REQUEST['password-change-success'] == 1;
-$userNotFound = $_SERVER["REQUEST_METHOD"] != "GET" && !isset($user);
 
 $email = $password = '';
 $emailErr = $passwordErr = '';
@@ -42,6 +41,8 @@ $sql = "SELECT * FROM users WHERE email='${email}'";
 $result = mysqli_query($conn, $sql);
 
 $user = mysqli_fetch_array($result);
+
+$userNotFound = $_SERVER["REQUEST_METHOD"] != "GET" && !isset($user);
 
 if(empty($user)) {
     return;
