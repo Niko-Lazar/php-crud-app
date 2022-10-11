@@ -7,6 +7,11 @@
     </div>
     <div class="row justify-content-center">
         <div class="mt-4 col-lg-6 cl-xs-12">
+            <h5 class="text-success">
+                <?php if(!empty($_REQUEST['password-change-success']) && $_REQUEST['password-change-success'] == 1): ?>
+                    Password changed successfuly, please login again
+                <?php endif; ?>
+            </h5>
             <form action="<?php echo $_SERVER["PHP_SELF"]; ?>" method="POST">
                 
                 <?php if($_SERVER["REQUEST_METHOD"] != "GET" && !isset($user)): ?>

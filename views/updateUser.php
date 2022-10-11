@@ -62,6 +62,7 @@ $password = sanitizeInput($_POST['password']);
 $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 $role = $_POST['role'];
 
+
 $sql = "UPDATE users SET name='$name', lastName='$lastName', email='$email', password='$hashedPassword', role='$role' WHERE id=$userID";
 
 $queryIsSuccessful = mysqli_query($conn, $sql);

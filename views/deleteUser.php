@@ -25,7 +25,9 @@ if($_SERVER["REQUEST_METHOD"] != 'POST') {
 $userID = $_REQUEST['id'];
 $userRole = $_REQUEST['role'];
 
-$isStudent = ($userRole == 'student') ? true : false;
+$isStudent = ($userRole == 'student')
+    ? true
+    : false;
 
 if($isStudent) {
     $conn->autocommit(FALSE);
