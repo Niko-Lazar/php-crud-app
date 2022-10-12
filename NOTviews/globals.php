@@ -41,4 +41,41 @@ function userRole() : string {
 }
 
 
+function actionMessage(string $msgFor) : array {
+
+    $msgContent = $_GET["{$msgFor}-action"] ?? '';
+
+    $msgType = '';
+
+    switch($msgContent) {
+        case '0':
+            $msgContent = "{$msgFor} created successfully";
+            $msgType = "alert-success";
+            break;
+        case '1':
+            $msgContent = "{$msgFor} info updated";
+            $msgType = "alert-warning";
+            break;
+        case '2':
+            $msgContent = "{$msgFor} has been deleted";
+            $msgType = "alert-danger";
+            break;
+    
+        default:
+            $msgContent = "";
+            $msgType = "";
+            break;
+    }
+
+    if(!$msgType && !$msgContent) {
+        return [];
+    }
+
+    return [
+        "msgContent" => $msgContent,
+        'msgType' => $msgType,
+    ];
+}
+
+
 ?>

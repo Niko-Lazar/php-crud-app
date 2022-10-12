@@ -14,38 +14,12 @@ if(userRole() != "administrator") {
     exit();
 }
 
-
-$msg = isset($_REQUEST['subject-action'])
-    ? $_REQUEST['subject-action']
-    : "";
-    
-$msgType = '';
-
-switch($msg) {
-    case '0':
-        $msg = "Subject created successfully";
-        $msgType = "alert-success";
-        break;
-    case '1':
-         $msg = "Subject info updated";
-         $msgType = "alert-warning";
-         break;
-    case '2':
-        $msg = "Subject has been deleted";
-        $msgType = "alert-danger";
-        break;
-
-    default:
-        $msg = "";
-        $msgType = "";
-        break;
-}
-
 if($_SERVER["REQUEST_METHOD"] != "GET") {
     return; 
- }
- 
+}
 
- $subjects = selectTable('subjects', $conn);
+$actionMsg = actionMessage('subject');
+
+$subjects = selectTable('subjects', $conn);
 
 ?>

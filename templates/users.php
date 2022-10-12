@@ -8,14 +8,12 @@
 
  <div class="row">
     <table class="table">
-        <div class="text-success">
-        <?php if(!empty($msg)): ?>
-            <div class="alert <?php echo $msgType; ?> alert-dismissible fade show" role="alert">
-            <strong><?php echo $msg; ?></strong>
+        <?php if(!empty($actionMsg)): ?>
+            <div class="alert <?php echo $actionMsg['msgType']; ?> alert-dismissible fade show" role="alert">
+            <strong><?php echo $actionMsg['msgContent']; ?></strong>
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
-            </div>
         <?php endif; ?>
         </div>
         <thead class="thead-dark">

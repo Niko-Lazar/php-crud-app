@@ -1,7 +1,8 @@
 <?php
 
 
-function selectTable(string $tableName, object $conn){
+function selectTable(string $tableName, object $conn) {
+
     $sql = "SELECT * FROM {$tableName}";
 
     $result = mysqli_query($conn, $sql);

@@ -13,36 +13,11 @@ if(userRole() != "administrator") {
     exit();
 }
 
-
-
-$msg = isset($_REQUEST['user-action'])
-    ? $_REQUEST['user-action']
-    : "";
-$msgType = '';
-
-switch($msg) {
-    case '0':
-        $msg = "User created successfully";
-        $msgType = "alert-success";
-        break;
-    case '1':
-        $msg = "User info updated";
-        $msgType = "alert-warning";
-        break;
-    case '2':
-        $msg = "User has been deleted";
-        $msgType = "alert-danger";
-        break;
-
-    default:
-        $msg = "";
-        $msgType = "";
-        break;
-}
-
 if($_SERVER["REQUEST_METHOD"] != "GET") {
    return; 
 }
+
+$actionMsg = actionMessage('user');
 
 $users = selectTable('users', $conn);
 
