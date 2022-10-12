@@ -1,5 +1,5 @@
 <?php include '../includes/header.php'; ?>
-<?php require '../views/students.php' ?>
+<?php require '../NOTviews/students.php' ?>
 
 <div class="container">
     <div class="row my-5 justify-content-end">
@@ -71,7 +71,7 @@
                                         </div>
                                         <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Return</button>
-                                        <form action="../views/deleteStudent.php?id=<?php echo $student['id']; ?>" method="POST">
+                                        <form action="../NOTviews/deleteStudent.php?id=<?php echo $student['id']; ?>" method="POST">
                                             <button role="button" class="btn btn-danger">Delete</button  >
                                         </form>
                                         </div>

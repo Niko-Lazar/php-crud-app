@@ -1,5 +1,5 @@
 <?php include '../includes/header.php'; ?>
-<?php require '../views/updateSubject.php' ?>
+<?php require '../NOTviews/updateSubject.php' ?>
 
 <div class="container">
             <div class="row justify-content-start">

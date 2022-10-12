@@ -1,5 +1,5 @@
 <?php include '../includes/header.php'; ?>
-<?php require '../views/login.php'; ?>
+<?php require '../NOTviews/login.php'; ?>
 
 <div class="container">
     <div class="row justify-content-center my-5">
