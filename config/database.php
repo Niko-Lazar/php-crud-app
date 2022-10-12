@@ -12,4 +12,5 @@ $connectionFailed = $conn->connect_error;
 if($connectionFailed) {
     die('Connection Failed ' . $conn->connect_error);
 }
+
 ?>

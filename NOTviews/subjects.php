@@ -1,5 +1,6 @@
 <?php include '../config/database.php' ?>
 <?php require 'globals.php'; ?>
+<?php require 'queries.php'; ?>
 
 <?php 
 
@@ -44,14 +45,7 @@ if($_SERVER["REQUEST_METHOD"] != "GET") {
     return; 
  }
  
- $sql = "SELECT * FROM subjects";
- 
- $result = mysqli_query($conn, $sql);
- 
- if(!$result) {
-    return;
- }
 
- $subjects = mysqli_fetch_all($result, MYSQLI_ASSOC);
+ $subjects = selectTable('subjects', $conn);
 
 ?>

@@ -1,5 +1,6 @@
 <?php include '../config/database.php' ?>
 <?php require 'globals.php'; ?>
+<?php require 'queries.php'; ?>
 <?php
 
 if(!loggedIn()) {
@@ -43,14 +44,6 @@ if($_SERVER["REQUEST_METHOD"] != "GET") {
    return; 
 }
 
-$sql = "SELECT * FROM users";
-
-$result = mysqli_query($conn, $sql);
-
-if(!$result) {
-    return;
-}
-
-$users = mysqli_fetch_all($result, MYSQLI_ASSOC);
+$users = selectTable('users', $conn);
 
 ?>

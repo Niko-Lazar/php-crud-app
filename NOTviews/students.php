@@ -1,5 +1,6 @@
 <?php include '../config/database.php' ?>
 <?php require 'globals.php'; ?>
+<?php require 'queries.php'; ?>
 
 <?php
 
@@ -40,14 +41,6 @@ switch($msg) {
 }
 
 
-$sql = "SELECT * FROM students";
-
-$result = mysqli_query($conn, $sql);
-
-if(!$result) {
-    return;
-}
-
-$students = mysqli_fetch_all($result, MYSQLI_ASSOC);
+$students = selectTable('students', $conn);
 
 ?>
