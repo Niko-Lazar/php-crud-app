@@ -16,6 +16,6 @@ if(userRole() == "student") {
 
 $actionMsg = actionMessage('student');
 
-$students = selectTable('students', $conn);
+$students = select($conn, 'students');
 
 ?>

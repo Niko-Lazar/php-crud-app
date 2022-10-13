@@ -20,6 +20,6 @@ if($_SERVER["REQUEST_METHOD"] != "GET") {
 
 $actionMsg = actionMessage('subject');
 
-$subjects = selectTable('subjects', $conn);
+$subjects = select($conn, 'subjects');
 
 ?>

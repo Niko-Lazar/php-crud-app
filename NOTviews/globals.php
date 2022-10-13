@@ -28,7 +28,6 @@ function hasOnlyLettersAndNumbers($input) : bool {
     return !!preg_match("/^[-a-zA-Z0-9 .]+$/" , $input);
 }
 
-
 function loggedIn() : bool {
     if(empty($_SESSION['loggedUser'])) {
         return false;
@@ -39,7 +38,6 @@ function loggedIn() : bool {
 function userRole() : string {
     return $_SESSION['loggedUser']['role'];
 }
-
 
 function actionMessage(string $msgFor) : array {
 
@@ -76,6 +74,5 @@ function actionMessage(string $msgFor) : array {
         'msgType' => $msgType,
     ];
 }
-
 
 ?>

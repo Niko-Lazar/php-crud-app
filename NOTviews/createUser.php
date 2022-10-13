@@ -1,5 +1,6 @@
 <?php require 'globals.php' ?>
 <?php include '../config/database.php' ?>
+<?php require 'queries.php'; ?>
 
 <?php
 
@@ -42,6 +43,28 @@ if(!$allInputsAreValid) {
     return;
 }
 
+$name = $_POST['name']; 
+$lastName = $_POST['lastName'];
+$email = sanitizeInput($_POST['email']);
+$password = sanitizeInput($_POST['password']);
+$hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+$role = $_POST['role'];
+
+$params = [
+    'name',
+    'lastName',
+    'email',
+    'password',
+    'role',
+];
+$values = [
+    $name,
+    $lastName,
+    $email,
+    $hashedPassword,
+    $role,
+];
+
 $name = $_POST['name'];
 $lastName = $_POST['lastName'];
 $email = sanitizeInput($_POST['email']);
@@ -58,6 +81,7 @@ if(!$queryIsSuccessful) {
     echo 'Error ' . mysqli_error($conn);
 }
 header('Location: ../templates/users.php?user-action=0');
+
 exit();
 
 

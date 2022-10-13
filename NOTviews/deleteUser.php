@@ -1,5 +1,6 @@
 <?php require '../config/database.php' ?>
 <?php require 'globals.php'; ?>
+<?php require 'queries.php'; ?>
 <?php
 session_start();
 
@@ -22,30 +23,28 @@ if($_SERVER["REQUEST_METHOD"] != 'POST') {
     return;
 }
 
-$userID = $_REQUEST['id'];
-$userRole = $_REQUEST['role'];
+$userID = $_GET['id'];
+$userRole = $_GET['role'];
 
 $isStudent = ($userRole == 'student')
     ? true
     : false;
 
+
 if($isStudent) {
-    $conn->autocommit(FALSE);
 
-    $conn->query("DELETE FROM students WHERE email = (SELECT email FROM users WHERE id=$userID)");
-    $conn->query("DELETE FROM users WHERE id=${userID}");
+    $sql = "SELECT email FROM users WHERE id = ?";
+    $userEmail = selectByCondition($conn, $sql, [$userID], ['s'])['email'];
 
-    $conn->commit();
-
+    $sql = "DELETE FROM students WHERE email = ?";
+    deleteByCondition($conn, $sql, [$userEmail], ['s']);
+    
+    delete($conn, 'users', $userID);
 } else {
-    $conn->query("DELETE FROM users WHERE id=${userID}");
-    $conn->commit();
+    delete($conn, 'users', $userID);
 }
-
-$conn -> close();
 
 header('Location: ../templates/users.php?user-action=2');
 exit();
-
 
 ?>

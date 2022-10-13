@@ -19,6 +19,6 @@ if($_SERVER["REQUEST_METHOD"] != "GET") {
 
 $actionMsg = actionMessage('user');
 
-$users = selectTable('users', $conn);
+$users = select($conn, 'users');
 
 ?>

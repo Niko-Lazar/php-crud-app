@@ -1,5 +1,6 @@
 <?php require '../config/database.php' ?>
 <?php require 'globals.php'; ?>
+<?php require 'queries.php'; ?>
 <?php
 session_start();
 
@@ -17,14 +18,9 @@ if($_SERVER["REQUEST_METHOD"] != 'POST') {
     return;
 }
 
-$subjectID = $_REQUEST['id'];
+$deleteSubject = delete($conn, "subjects", (int)$_GET['id']);
 
-
-$sql = "DELETE FROM subjects WHERE id=${subjectID}";
-
-$queryIsSuccessful = $conn->query($sql);
-
-if(!$queryIsSuccessful) {
+if(!$deleteSubject) {
     echo "Error deleting subject " . $conn->error;
 }
 

@@ -1,5 +1,6 @@
 <?php require '../config/database.php' ?>
 <?php require 'globals.php'; ?>
+<?php require 'queries.php'; ?>
 <?php
 session_start();
 
@@ -17,18 +18,20 @@ if($_SERVER["REQUEST_METHOD"] != 'POST') {
     return;
 }
 
-$studentID = $_REQUEST['id'];
+$studentID = $_GET['id'];
 
-$conn->autocommit(FALSE);
+$deletor = new Deletor();
+$selector = new Selector(); 
 
-$conn->query("DELETE FROM users WHERE email = (SELECT email FROM students WHERE id=$studentID)");
-$conn->query("DELETE FROM students WHERE id=${studentID}");
+$sql = "SELECT email FROM students WHERE id = ?";
+$studentEmail = selectByCondition($conn, $sql, [$studentID], ['s'])['email'];
 
-$conn->commit();
-$conn -> close();
+$sql = "DELETE FROM students WHERE email = ?";
+deleteByCondition($conn, $sql, [$studentEmail], ['s']);
+    
+delete($conn, 'users', $studentID);
 
 header('Location: ../templates/students.php?student-action=2');
 exit();
-
 
 ?>
