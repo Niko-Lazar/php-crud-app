@@ -12,12 +12,12 @@ if($_SERVER["REQUEST_METHOD"] != "POST") {
     return;
 }
 
-$oldPassword = $newPassword1 = $newPassword2 = '';
-$oldPasswordErr = $newPassword1Err = $newPassword2Err = $passwordMatchErr = '';
-
 if(!isset($_POST['submit'])) {
     return;
 }
+
+$oldPassword = $newPassword = $newPasswordRepeat = '';
+$oldPasswordErr = $newPasswordErr = $newPasswordRepeatErr = $passwordMatchErr = '';
 
 if(!$_POST['oldPassword']) {
     $oldPasswordErr = "Plase enter a valid password";
@@ -29,27 +29,27 @@ if(!$passwordMatches) {
     $oldPasswordErr = "Wrong password";
 }
 
-if(!$_POST['newPassword1']) {
+if(!$_POST['newPassword']) {
     $newPassword1Err = "Plase enter a valid password";
 }
 
-if(!$_POST['newPassword2']) {
-    $newPassword2Err = "Plase enter a valid password";
+if(!$_POST['newPasswordRepeat']) {
+    $newPasswordRepeatErr = "Plase enter a valid password";
 }
 
-if($_POST['newPassword1'] != $_POST['newPassword2']) {
+if($_POST['newPassword'] != $_POST['newPasswordRepeat']) {
     $passwordMatchErr = "Passwords do not match";
 }
 
-$allInputsAreValid = (!$oldPasswordErr && !$newPassword1Err && !$newPassword2Err && !$passwordMatchErr);
+$allInputsAreValid = (!$oldPasswordErr && !$newPasswordErr && !$newPasswordRepeatErr && !$passwordMatchErr);
 
 if(!$allInputsAreValid) {
     return;
 }
 
 $oldPassword = sanitizeInput($_POST['oldPassword']);
-$newPassword1 = sanitizeInput($_POST['newPassword1']);
-$hashedPassword = password_hash($newPassword1, PASSWORD_DEFAULT);
+$newPassword = sanitizeInput($_POST['newPassword']);
+$hashedPassword = password_hash($newPassword, PASSWORD_DEFAULT);
 
 $sql = "UPDATE users SET password='$hashedPassword' WHERE id={$_SESSION['loggedUser']['id']}";
 
@@ -59,8 +59,11 @@ if(!$queryIsSuccessful) {
     echo 'Error ' . mysqli_error($conn);
 }
 
-session_destroy();
-header('Location: ../templates/login.php?password-change-success=1');
+unset($_SESSION['loggedUser']);
+
+$_SESSION['flash'] = "Password changed successfuly, please login again";
+
+header('Location: ../templates/login.php');
 exit();
 
 ?>

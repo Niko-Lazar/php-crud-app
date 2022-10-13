@@ -8,8 +8,11 @@
     <div class="row justify-content-center">
         <div class="mt-4 col-lg-6 cl-xs-12">
             <h5 class="text-success">
-                <?php if($passwordIsReset): ?>
-                    Password changed successfuly, please login again
+                <?php if(isset($_SESSION['flash'])): ?>
+                    <?php
+                        echo $_SESSION['flash'];
+                        unset($_SESSION['flash']);
+                    ?>
                 <?php endif; ?>
             </h5>
             <form action="<?php echo $_SERVER["PHP_SELF"]; ?>" method="POST">

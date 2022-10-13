@@ -8,8 +8,6 @@ if(loggedIn()) {
     exit();
 }
 
-$passwordIsReset = !empty($_REQUEST['password-change-success']) && $_REQUEST['password-change-success'] == 1;
-
 $email = $password = '';
 $emailErr = $passwordErr = '';
 

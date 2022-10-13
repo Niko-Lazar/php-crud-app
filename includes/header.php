@@ -47,7 +47,7 @@
                     </li>
                 </ul>
             </div>
-            <a href="../views/logout.php" class="btn btn-primary">
+            <a href="../NOTviews/logout.php" class="btn btn-primary">
                         <i class="fas fa-sign-out-alt"></i>
             </a>
         </nav>

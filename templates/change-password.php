@@ -25,9 +25,9 @@
                 <div class="form-group">
                     <label for="password">New password</label>
                     
-                    <?php if(!empty($newPassword1Err) && empty($oldPasswordErr)): ?>
+                    <?php if(!empty($newPasswordErr) && empty($oldPasswordErr)): ?>
                         <div class="text-danger">
-                            <?php echo $newPassword1Err; ?>
+                            <?php echo $newPasswordErr; ?>
                         </div>
                     <?php endif; ?>
                     <?php if(!empty($passwordMatchErr) && empty($oldPasswordErr)): ?>
@@ -36,18 +36,18 @@
                         </div>
                     <?php endif; ?>
 
-                    <input type="password" name="newPassword1" class="form-control" required>
+                    <input type="password" name="newPassword" class="form-control" required>
                 </div>
                 <div class="form-group">
                     <label for="password">Repeat new password</label>
                     
-                    <?php if(!empty($newPassword2Err) && empty($oldPasswordErr)): ?>
+                    <?php if(!empty($newPasswordRepeatErr) && empty($oldPasswordErr)): ?>
                         <div class="text-danger">
                             <?php echo $newPassword2Err; ?>
                         </div>
                     <?php endif; ?>
 
-                    <input type="password" name="newPassword2" class="form-control" required>
+                    <input type="password" name="newPasswordRepeat" class="form-control" required>
                 </div>
                 <input type="submit" name="submit" class="btn btn-primary" role="button" value="Change password">
             </form>
