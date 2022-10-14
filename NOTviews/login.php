@@ -1,5 +1,6 @@
 <?php require '../config/database.php'; ?>
 <?php require 'globals.php'; ?>
+<?php require 'queries.php' ?>
 
 <?php
 
@@ -35,11 +36,9 @@ $email = $_POST['email'];
 
 $password = sanitizeInput($_POST['password']);
 
-$sql = "SELECT * FROM users WHERE email='${email}'";
+$sql = "SELECT * FROM users WHERE email=?";
 
-$result = mysqli_query($conn, $sql);
-
-$user = mysqli_fetch_array($result);
+$user = selectByCondition($conn, $sql, $email, 's');
 
 if(empty($user)) {
     return;

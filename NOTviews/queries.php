@@ -1,6 +1,6 @@
 <?php
 
-function select(object $conn, string $tableName) : array {
+function select(object $conn, string $tableName) {
     $tableName = $conn->real_escape_string($tableName);
     
     $sql = "SELECT * FROM {$tableName}";
@@ -12,7 +12,7 @@ function select(object $conn, string $tableName) : array {
     return $data;
 }
 
-function selectByCondition(object $conn, string $query, string $condition, string $types) : array {
+function selectByCondition(object $conn, string $query, string $condition, string $types) {
 
     $statement = $conn->prepare($query);
 
@@ -24,6 +24,8 @@ function selectByCondition(object $conn, string $query, string $condition, strin
 
     $data = $result->fetch_assoc();
 
+    
+    
     return $data;
 }
 
