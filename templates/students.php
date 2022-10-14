@@ -57,7 +57,7 @@
                                 <a href="" role="button" class="text-primary mx-1">
                                     <i class="fas fa-eye"></i>
                                 </a>
-                                <a href="" role="button" class="text-warning mx-1">
+                                <a href="update-student.php?id=<?php echo $student['id']; ?>" role="button" class="text-warning mx-1">
                                     <i class="fas fa-edit"></i>
                                 </a>
                                 <button class="icon-btn red mx-1 delete_btn" data-toggle="modal" data-target=#deleteStudent<?php echo $student['id']; ?>>

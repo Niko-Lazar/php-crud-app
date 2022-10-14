@@ -49,7 +49,7 @@ $values = [
 ];
 
 $sql = "INSERT INTO users (name, lastName, email, password, role) VALUES (?, ?, ?, ?, ?)";
-$userCreated = create($conn, $sql, $values, 'sssss');
+$userCreated = createUpdate($conn, $sql, $values, 'sssss');
 
 if(!$userCreated) {
     echo 'Error ' . mysqli_error($conn);

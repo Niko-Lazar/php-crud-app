@@ -51,7 +51,7 @@ $values = [
 $sql = "INSERT INTO subjects (subjectCode, name, yearOfStudy, ESPB, mandatory) VALUES (?, ?, ?, ?, ?)";
 $types = "sssss";
 
-$subjectCreated = create($conn, $sql, $values, $types);
+$subjectCreated = createUpdate($conn, $sql, $values, $types);
 
 if(!$subjectCreated) {
     echo 'Error ' . mysqli_error($conn);

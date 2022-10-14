@@ -14,7 +14,7 @@ if(userRole() != "administrator") {
     exit();
 }
 
-$userID = $_REQUEST['id'];
+$userID = $_GET['id'];
 
 $sql = "SELECT * FROM users WHERE id=?";
 $user = selectByCondition($conn, $sql, $userID, 's');
@@ -55,26 +55,37 @@ if(!!$userErrorFields) {
     return;
 }
 
-$name = $_POST['name'];
-$lastName = $_POST['lastName'];
-$email = sanitizeInput($_POST['email']);
-$password = sanitizeInput($_POST['password']);
-$hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-$role = $_POST['role'];
+$userValues = [
+    $name = $_POST['name'],
+    $lastName = $_POST['lastName'],
+    $email = sanitizeInput($_POST['email']),
+    $hashedPassword = password_hash(sanitizeInput($_POST['password']), PASSWORD_DEFAULT),
+    $userID,
+];
 
-if($isStudent) {
-    $conn->autocommit(FALSE);
+$studentValues = [
+    $name = $_POST['name'],
+    $lastName = $_POST['lastName'],
+    $email = sanitizeInput($_POST['email']),
+    $oldEmail,
+];
+
+
+if($isStudent) { 
+    $sqlStudent = "UPDATE students SET name=?, lastName=?, email=? WHERE email=?";
     
-    $conn->query("UPDATE students SET name='$name', lastName='$lastName', email='$email' WHERE email='$oldEmail'");
-    $conn->query("UPDATE users SET name='$name', lastName='$lastName', email='$email', password='$hashedPassword', role='student' WHERE id=$userID");
+    $studentResult = createUpdate($conn, $sqlStudent, $studentValues, 'ssss');
 
-    $queryIsSuccessful = $conn->commit();
-    $conn -> close();
+    $sqlUser = "UPDATE users SET name=?, lastName=?, email=?, password=? WHERE id=?";
+    
+    $userResult = createUpdate($conn, $sqlUser, $userValues, 'sssss');
+
+    $queryIsSuccessful = $studentResult && $userResult;
 
 } else {
-    $sql = "UPDATE users SET name='$name', lastName='$lastName', email='$email', password='$hashedPassword', role='$role' WHERE id=$userID";
-
-    $queryIsSuccessful = mysqli_query($conn, $sql);
+    $sqlUser = "UPDATE users SET name=?, lastName=?, email=?, password=? WHERE id=?";
+    
+    $queryIsSuccessful = createUpdate($conn, $sqlStudent, $userValues, 'sssss');
 }
 
 if(!$queryIsSuccessful) {

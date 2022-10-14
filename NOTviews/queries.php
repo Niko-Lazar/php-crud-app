@@ -54,7 +54,7 @@ function deleteByCondition(object $conn, string $query, string $condition, strin
     return $result;
 }
 
-function create(object $conn, string $query, array $values, string $types) : bool {
+function createUpdate(object $conn, string $query, array $values, string $types) : bool {
     
     $statement = $conn->prepare($query);
     $statement->bind_param($types, ...$values);

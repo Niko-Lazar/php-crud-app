@@ -1,4 +1,4 @@
-<?php include '../config/database.php' ?>
+<?php require '../config/database.php' ?>
 <?php require 'globals.php' ?>
 <?php require 'queries.php' ?>
 
@@ -13,6 +13,13 @@ if(userRole() != "administrator") {
     header('Location: students.php');
     exit();
 }
+
+$studentID = $_GET['id'];
+
+$sql = "SELECT * FROM students WHERE id=?";
+$student = selectByCondition($conn, $sql, $studentID, 's');
+
+$oldEmail = $student['email'];
 
 if($_SERVER["REQUEST_METHOD"] != "POST") {
     return;
@@ -66,39 +73,33 @@ $valuesStudent = [
     $yearOfStudy = $_POST['yearOfStudy'],
     $dateOfBirth = sanitizeInput($_POST['dateOfBirth']),
     $IDnumber = $_POST['IDnumber'],
+    $studentID,
 ];
-
-$password = "student${indexNumber}";
-$hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
 $valuesUser = [
     $name = $_POST['name'],
     $lastName = $_POST['lastName'],
     $email = sanitizeInput($_POST['email']),
-    $hashedPassword,
-    'student',
+    $oldEmail,
 ];
 
-$sqlStudent = "INSERT INTO students (indexNumber, name, parentsName, lastName, email, phoneNumber, yearOfStudy, dateOfBirth, IDnumber)";
-$sqlStudent .= "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);";
 
-$typesStudent = "sssssssss";
+$sqlStudent = "UPDATE students SET indexNumber=?, name=?, parentsName=?, lastName=?, email=?, phoneNumber=?, yearOfStudy=?, dateOfBirth=?, IDnumber =? WHERE id=?";
 
-$sqlUser = "INSERT INTO users (name, lastName, email, password, role) VALUES (?, ?, ?, ?, ?);";    
-$tyepsUser = "sssss";
+$studentUpdated = createUpdate($conn, $sqlStudent, $valuesStudent, 'ssssssssss');
 
-$studentCreated = createUpdate($conn, $sqlStudent, $valuesStudent, $typesStudent);
+$sqlUser = "UPDATE users SET name=?, lastName=?, email=? WHERE email =?";
 
-$userCreated = createUpdate($conn, $sqlUser, $valuesUser, $tyepsUser);
+$userUpdate = createUpdate($conn, $sqlUser, $valuesUser, 'ssss');
 
-if(!$studentCreated || !$userCreated) {
+$updateSuccesful = $studentUpdated && $userUpdate;
+
+if(!$updateSuccesful) {
     echo 'Error ' . mysqli_error($conn);
 }
 
-$_SESSION['flash_message'] = actionMessage('student', 'success');
+$_SESSION['flash_message'] = actionMessage('student', 'warning');
 
 header('Location: ../templates/students.php');
 exit();
-
-
 ?>

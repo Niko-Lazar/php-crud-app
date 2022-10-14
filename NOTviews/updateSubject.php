@@ -51,19 +51,22 @@ if(!$allInputsAreValid) {
     return;
 }
 
-$subjectCode = $_POST['subjectCode'];
-$name = $_POST['name'];
-$yearOfStudy = $_POST['yearOfStudy'];
-$ESPB = $_POST['ESPB'];
-$mandatory = sanitizeInput($_POST['mandatory']);
+$values = [
+    $subjectCode = $_POST['subjectCode'],
+    $name = $_POST['name'],
+    $yearOfStudy = $_POST['yearOfStudy'],
+    $ESPB = $_POST['ESPB'],
+    $mandatory = sanitizeInput($_POST['mandatory']),
+    $subjectID,
+];
 
-$sql = "UPDATE subjects SET subjectCode='$subjectCode', name='$name', yearOfStudy='$yearOfStudy', ";
-$sql .= "ESPB='$ESPB', mandatory='$mandatory' WHERE id=$subjectID";
+$sql = "UPDATE subjects SET subjectCode=?, name=?, yearOfStudy=?,ESPB=?, mandatory=? WHERE id=?";
 
-$queryIsSuccessful = mysqli_query($conn, $sql);
+$queryIsSuccessful = createUpdate($conn, $sql, $values, 'ssssss');
 
 if(!$queryIsSuccessful) {
     echo 'Error ' . mysqli_error($conn);
+    exit();
 }
 
 $_SESSION['flash_message'] = actionMessage('subject', 'warning');
