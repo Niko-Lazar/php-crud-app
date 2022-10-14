@@ -9,9 +9,9 @@
                 <div class="form-group">
                     <label for="name">Name</label>
 
-                    <?php if(!empty($nameErr)): ?>
+                    <?php if(!empty($userErrorFields['name'])): ?>
                         <div class="text-danger">
-                            <?php echo $nameErr; ?>
+                            <?php echo $userErrorFields['name']; ?>
                         </div>
                     <?php endif; ?>
 
@@ -22,9 +22,9 @@
                 <div class="form-group">
                     <label for="lastName">Last Name</label>
 
-                    <?php if(!empty($lastNameErr)): ?>
+                    <?php if(!empty($userErrorFields['lastName'])): ?>
                         <div class="text-danger">
-                            <?php echo $lastNameErr; ?>
+                            <?php echo $userErrorFields['lastName']; ?>
                         </div>
                     <?php endif; ?>
 
@@ -35,9 +35,9 @@
                 <div class="form-group">
                     <label for="email">Email</label>
 
-                    <?php if(!empty($emailErr)): ?>
+                    <?php if(!empty($userErrorFields['email'])): ?>
                         <div class="text-danger">
-                            <?php echo $emailErr; ?>
+                            <?php echo $userErrorFields['email'] ?>
                         </div>
                     <?php endif; ?>
 
@@ -48,9 +48,9 @@
                 <div class="form-group">
                     <label for="role">Role</label>
 
-                    <?php if(!empty($roleErr)): ?>
+                    <?php if(!empty($userErrorFields['role'])): ?>
                         <div class="text-danger">
-                            <?php echo $roleErr; ?>
+                            <?php echo $userErrorFields['role']; ?>
                         </div>
                     <?php endif; ?>
                     <?php if($user['role'] == 'student'): ?>
@@ -79,9 +79,9 @@
                 <div class="form-group">
                     <label for="password">Password</label>
 
-                    <?php if(!empty($passwordErr)): ?>
+                    <?php if(!empty($userErrorFields['password'])): ?>
                         <div class="text-danger">
-                            <?php echo $passwordErr; ?>
+                            <?php echo $userErrorFields['password']; ?>
                         </div>
                     <?php endif; ?>
 

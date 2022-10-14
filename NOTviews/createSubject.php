@@ -14,32 +14,29 @@ if(userRole() != "administrator") {
     exit();
 }
 
-$subjectCode = $name = $yearOfStudy = $ESPB = $mandatory = '';
-$subjectCodeErr = $nameErr = $yearOfStudyErr = $ESPBErr = $mandatoryErr = '';
-
 if(!isset($_POST['submit'])) {
     return;
 }
 
+$subjectErrorFields = [];
+
 if(!$_POST['subjectCode'] || !hasOnlyNumbers($_POST['subjectCode'])) {
-    $subjectCodeErr = "Please enter a valid subject code";
+    $subjectErrorFields['subjectCode'] = "Please enter a valid subject code";
 }
 if(!$_POST['name'] || !hasOnlyLettersAndNumbers($_POST['name'])) {
-    $nameErr = "Please enter a valid subject name";
+    $subjectErrorFields['name'] = "Please enter a valid subject name";
 }
 if(!$_POST['yearOfStudy'] || !is_numeric($_POST['yearOfStudy'])) {
-    $yearOfStudyErr = "Please enter a valid year of study";
+    $subjectErrorFields['yearOfStudy'] = "Please enter a valid year of study";
 }
 if(!$_POST['ESPB'] || !is_numeric($_POST['ESPB'])) {
-    $ESPBErr = "Please enter a valid ESPB number";
+    $subjectErrorFields['ESPB'] = "Please enter a valid ESPB number";
 }
 if(!$_POST['mandatory'] && ($_POST['mandatory'] != 0 && $_POST['mandatory'] != 1)) {
-    $mandatoryErr = "Please select a valid subject type";
+    $subjectErrorFields['mandatory'] = "Please select a valid subject type";
 }
 
-$allInputsAreValid = !$subjectCodeErr && !$nameErr && !$yearOfStudyErr && !$ESPBErr && !$mandatoryErr;
-
-if(!$allInputsAreValid) {
+if(!!$subjectErrorFields) {
     return;
 }
 

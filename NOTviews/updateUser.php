@@ -1,5 +1,6 @@
 <?php require '../config/database.php' ?>
 <?php require 'globals.php' ?>
+<?php require 'queries.php' ?>
 
 <?php
 
@@ -15,11 +16,9 @@ if(userRole() != "administrator") {
 
 $userID = $_REQUEST['id'];
 
-$sql = "SELECT * FROM users WHERE id=${userID}";
+$sql = "SELECT * FROM users WHERE id=?";
 
-$result = mysqli_query($conn, $sql);
-
-$user = mysqli_fetch_array($result);
+$user = selectByCondition($conn, $sql, $userID, 's');
 
 if($user['role'] == 'student') {
     $oldEmail = $user['email'];
@@ -31,32 +30,29 @@ if($_SERVER["REQUEST_METHOD"] != "POST") {
     return;
 }
 
-$name = $lastName = $email = $password = $role = '';
-$nameErr = $lastNameErr = $emailErr = $passwordErr = $roleErr = '';
-
 if(!isset($_POST['submit'])) {
     return;
 }
 
+$userErrorFields = [];
+
 if(!$_POST['name'] || !hasOnlyLetters($_POST['name'])) {
-    $nameErr = "Please enter a valid name";
+    $userErrorFields['name'] = "Please enter a valid name";
 }
 if(!$_POST['lastName'] || !hasOnlyLetters($_POST['lastName'])) {
-    $lastNameErr = "Plase enter a valid last name";
+    $userErrorFields['lastName'] = "Plase enter a valid last name";
 }
 if(!$_POST['email']) {
-    $emailErr = "Plase enter a valid email";
+    $userErrorFields['email'] = "Plase enter a valid email";
 }
 if(!$_POST['password']) {
-    $passwordErr = "Plase enter a valid password";
+    $userErrorFields['password'] = "Plase enter a valid password";
 }
 if(!$_POST['role'] || !hasOnlyLetters($_POST['role'])) {
-    $roleErr = "Plase select a role";
+    $userErrorFields['role'] = "Plase select a role";
 }
 
-$allInputsAreValid = (!$nameErr && !$lastNameErr && !$emailErr && !$passwordErr && !$roleErr);
-
-if(!$allInputsAreValid) {
+if(!!$userErrorFields) {
     return;
 }
 

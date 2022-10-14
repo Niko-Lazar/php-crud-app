@@ -18,45 +18,41 @@ if($_SERVER["REQUEST_METHOD"] != "POST") {
     return;
 }
 
-$indexNumber = $name = $parentsName = $lastName = $email = $phoneNumber = $yearOfStudy = $dateOfBirth = $IDnumber = '';
-$indexNumberErr = $nameErr = $parentsNameErr = $lastNameErr = $emailErr = $phoneNumberErr = $yearOfStudyErr = $dateOfBirthErr = $IDnumberErr = '';
-
 if(!isset($_POST['submit'])) {
     return;
 }
 
-if(!$_POST['indexNumber']) {
-    $indexNumberErr = "Please enter a valid index number";
+$studentErrorFields = [];
+
+if(!$_POST['indexNumber'] || !hasOnlyLettersAndNumbers($_POST['indexNumber'])) {
+    $studentErrorFields['indexNumber'] = "Please enter a valid index number";
 }
 if(!$_POST['name'] || !hasOnlyLetters($_POST['name'])) {
-    $nameErr = "Please enter a valid name";
+    $studentErrorFields['name'] = "Please enter a valid name";
 }
 if(!$_POST['parentsName'] || !hasOnlyLetters($_POST['parentsName'])) {
-    $parentsNameErr = "Please enter a valid parent's name";
+    $studentErrorFields['parentsName'] = "Please enter a valid parent's name";
 }
 if(!$_POST['lastName'] || !hasOnlyLetters($_POST['lastName'])) {
-    $lastNameErr = "Please enter a valid last name";
+    $studentErrorFields['lastName'] = "Please enter a valid last name";
 }
 if(!$_POST['email']) {
-    $emailErr = "Please enter a valid email adress";
+    $studentErrorFields['email'] = "Please enter a valid email adress";
 }
 if(!$_POST['phoneNumber'] || !hasOnlyNumbers($_POST['phoneNumber'])) {
-    $phoneNumberErr = "Please enter a valid phone number";
+    $studentErrorFields['phoneNumber'] = "Please enter a valid phone number";
 }
 if(!$_POST['yearOfStudy'] || !is_numeric($_POST['yearOfStudy'])) {
-    $yearOfStudyErr = "Please enter a valid year of study";
+    $studentErrorFields['yearOfStudy'] = "Please enter a valid year of study";
 }
 if(!$_POST['dateOfBirth']) {
-    $dateOfBirthErr = "Please enter a valid date of birth";
+    $studentErrorFields['dateOfBirth'] = "Please enter a valid date of birth";
 }
 if(!$_POST['IDnumber'] || !is_numeric($_POST['IDnumber'])) {
-    $IDnumberErr = "Please enter a valid ID number";
+    $studentErrorFields['IDnumber'] = "Please enter a valid ID number";
 }
 
-$allInputsAreValid = (!$indexNumberErr && !$nameErr && !$parentsNameErr && !$lastNameErr && !$emailErr && !$phoneNumberErr && !$yearOfStudyErr && !$dateOfBirthErr && !$IDnumberErr);
-
-
-if(!$allInputsAreValid) {
+if(!!$studentErrorFields) {
     return;
 }
 
@@ -83,8 +79,9 @@ $valuesUser = [
     'student',
 ];
 
-$sqlStudent = "INSERT INTO students (indexNumber, name, parentsName, lastName, email, phoneNumber, yearOfStudy, dateOfBirth, IDnumber)" .
-        "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);";
+$sqlStudent = "INSERT INTO students (indexNumber, name, parentsName, lastName, email, phoneNumber, yearOfStudy, dateOfBirth, IDnumber)";
+$sqlStudent .= "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);";
+
 $typesStudent = "sssssssss";
 
 $sqlUser = "INSERT INTO users (name, lastName, email, password, role) VALUES (?, ?, ?, ?, ?);";    
@@ -94,8 +91,7 @@ $studentCreated = create($conn, $sqlStudent, $valuesStudent, $typesStudent);
 
 $userCreated = create($conn, $sqlUser, $valuesUser, $tyepsUser);
 
-
-if(!$studentCreated && !$userCreated) {
+if(!$studentCreated || !$userCreated) {
     echo 'Error ' . mysqli_error($conn);
 }
 

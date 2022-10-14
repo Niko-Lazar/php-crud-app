@@ -8,45 +8,45 @@
                 <legend class="mt-5 mb-5">Create subject</legend>
                 <div class="form-group">
                     <label for="">Subject code</label>
-                    <?php if(!empty($subjectCodeErr)): ?>
+                    <?php if(!empty($subjectErrorFields['subjectCode'])): ?>
                         <div class="text-danger">
-                            <?php echo $subjectCodeErr; ?>
+                            <?php echo $subjectErrorFields['subjectCode']; ?>
                         </div>
                     <?php endif; ?>
                     <input type="text" class="form-control" name="subjectCode" required>
                 </div>
                 <div class="form-group">
                     <label for="">Subject name</label>
-                    <?php if(!empty($nameErr)): ?>
+                    <?php if(!empty($subjectErrorFields['name'])): ?>
                         <div class="text-danger">
-                            <?php echo $nameErr; ?>
+                            <?php echo $subjectErrorFields['name']; ?>
                         </div>
                     <?php endif; ?>
                     <input type="text" class="form-control" name="name" required>
                 </div>
                 <div class="form-group">
                     <label for="">Year of study</label>
-                    <?php if(!empty($yearOfStudyErr)): ?>
+                    <?php if(!empty($subjectErrorFields['yearOfStudy'])): ?>
                         <div class="text-danger">
-                            <?php echo $yearOfStudyErr; ?>
+                            <?php echo $subjectErrorFields['yearOfStudy']; ?>
                         </div>
                     <?php endif; ?>
                     <input type="text" class="form-control" name="yearOfStudy" required>
                 </div>
                 <div class="form-group">
                     <label for="">ESPB</label>
-                    <?php if(!empty($ESPBErr)): ?>
+                    <?php if(!empty($subjectErrorFields['ESPB'])): ?>
                         <div class="text-danger">
-                            <?php echo $ESPBErr; ?>
+                            <?php echo $subjectErrorFields['ESPB']; ?>
                         </div>
                     <?php endif; ?>
                     <input type="text" class="form-control" name="ESPB" required>
                 </div>
                 <div class="form-group">
                     <label for="">Mandatory</label>
-                    <?php if(!empty($mandatoryErr)): ?>
+                    <?php if(!empty($subjectErrorFields['mandatory'])): ?>
                         <div class="text-danger">
-                            <?php echo $mandatoryErr; ?>
+                            <?php echo $subjectErrorFields['mandatory']; ?>
                         </div>
                     <?php endif; ?>
                     <select name="mandatory" class="custom-select">
