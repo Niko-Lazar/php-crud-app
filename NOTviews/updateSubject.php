@@ -1,5 +1,6 @@
 <?php require '../config/database.php' ?>
 <?php require 'globals.php' ?>
+<?php require 'inputChecks.php' ?>
 <?php require 'queries.php' ?>
 <?php
 
@@ -22,32 +23,13 @@ if($_SERVER["REQUEST_METHOD"] != "POST") {
     return;
 }
 
-$subjectCode = $name = $yearOfStudy = $ESPB = $mandatory = '';
-$subjectCodeErr = $nameErr = $yearOfStudyErr = $ESPBErr = $mandatoryErr = '';
-
 if(!isset($_POST['submit'])) {
     return;
 }
 
-if(!$_POST['subjectCode'] || !hasOnlyNumbers($_POST['subjectCode'])) {
-    $subjectCodeErr = "Please enter a valid subject code";
-}
-if(!$_POST['name'] || !hasOnlyLettersAndNumbers($_POST['name'])) {
-    $nameErr = "Please enter a valid subject name";
-}
-if(!$_POST['yearOfStudy'] || !is_numeric($_POST['yearOfStudy'])) {
-    $yearOfStudyErr = "Please enter a valid year of study";
-}
-if(!$_POST['ESPB'] || !is_numeric($_POST['ESPB'])) {
-    $ESPBErr = "Please enter a valid ESPB number";
-}
-if(!$_POST['mandatory'] && ($_POST['mandatory'] != 0 && $_POST['mandatory'] != 1)) {
-    $mandatoryErr = "Please select a valid subject type";
-}
+$subjectErrorFields = checkSubjectFields();
 
-$allInputsAreValid = !$subjectCodeErr && !$nameErr && !$yearOfStudyErr && !$ESPBErr && !$mandatoryErr;
-
-if(!$allInputsAreValid) {
+if(!!$subjectErrorFields) {
     return;
 }
 

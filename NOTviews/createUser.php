@@ -1,5 +1,6 @@
-<?php require 'globals.php' ?>
 <?php include '../config/database.php' ?>
+<?php require 'globals.php' ?>
+<?php require 'inputChecks.php' ?>
 <?php require 'queries.php'; ?>
 
 <?php
@@ -18,23 +19,7 @@ if(!isset($_POST['submit'])) {
     return;
 }
 
-$userErrorFields = [];
-
-if(!$_POST['name'] || !hasOnlyLetters($_POST['name'])) {
-    $userErrorFields['name'] = "Please enter a valid name";
-}
-if(!$_POST['lastName'] || !hasOnlyLetters($_POST['lastName'])) {
-    $userErrorFields['lastName'] = "Plase enter a valid last name";
-}
-if(!$_POST['email']) {
-    $userErrorFields['email'] = "Plase enter a valid email";
-}
-if(!$_POST['password']) {
-    $userErrorFields['password'] = "Plase enter a valid password";
-}
-if(!$_POST['role'] || !hasOnlyLetters($_POST['role'])) {
-    $userErrorFields['role'] = "Plase select a role";
-}
+$userErrorFields = checkUserFields();
 
 if(!!$userErrorFields) {
     return;

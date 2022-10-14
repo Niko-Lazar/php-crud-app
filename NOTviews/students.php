@@ -14,8 +14,6 @@ if(userRole() == "student") {
     exit();
 }
 
-#$actionMsg = actionMessage('student');
-
 $students = select($conn, 'students');
 
 ?>
