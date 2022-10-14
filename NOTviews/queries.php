@@ -27,7 +27,6 @@ function selectByCondition(object $conn, string $query, string $condition, strin
     return $data;
 }
 
-
 function delete(object $conn, string $tableName, int $id) : bool {
     $tableName = $conn->real_escape_string($tableName);
 

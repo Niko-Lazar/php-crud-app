@@ -1,5 +1,6 @@
 <?php include '../config/database.php' ?>
 <?php require 'globals.php' ?>
+<?php require 'queries.php' ?>
 
 <?php
 
@@ -59,30 +60,44 @@ if(!$allInputsAreValid) {
     return;
 }
 
-$indexNumber = sanitizeInput($_POST['indexNumber']);
-$name = $_POST['name'];
-$parentsName = $_POST['parentsName'];
-$lastName = $_POST['lastName'];
-$email = sanitizeInput($_POST['email']);
-$phoneNumber = $_POST['phoneNumber'];
-$yearOfStudy = $_POST['yearOfStudy'];
-$dateOfBirth = sanitizeInput($_POST['dateOfBirth']);
-$IDnumber = $_POST['IDnumber'];
+$valuesStudent = [
+    $indexNumber = sanitizeInput($_POST['indexNumber']),
+    $name = $_POST['name'],
+    $parentsName = $_POST['parentsName'],
+    $lastName = $_POST['lastName'],
+    $email = sanitizeInput($_POST['email']),
+    $phoneNumber = $_POST['phoneNumber'],
+    $yearOfStudy = $_POST['yearOfStudy'],
+    $dateOfBirth = sanitizeInput($_POST['dateOfBirth']),
+    $IDnumber = $_POST['IDnumber'],
+];
 
 $password = "student${indexNumber}";
 $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
+$valuesUser = [
+    $name = $_POST['name'],
+    $lastName = $_POST['lastName'],
+    $email = sanitizeInput($_POST['email']),
+    $hashedPassword,
+    'student',
+];
 
-$sql = "INSERT INTO students (indexNumber, name, parentsName, lastName, email, phoneNumber, yearOfStudy, dateOfBirth, IDnumber)" .
-        "VALUES ('$indexNumber', '$name', '$parentsName', '$lastName', '$email', '$phoneNumber', '$yearOfStudy', '$dateOfBirth', '$IDnumber');";
-$sql .= "INSERT INTO users (name, lastName, email, password, role)" .
-        "VALUES ('$name', '$lastName', '$email', '$hashedPassword', 'student');";    
 
 
-$queryIsSuccessful = $conn->multi_query($sql);
+$sqlStudent = "INSERT INTO students (indexNumber, name, parentsName, lastName, email, phoneNumber, yearOfStudy, dateOfBirth, IDnumber)" .
+        "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);";
+$typesStudent = "sssssssss";
+
+$sqlUser = "INSERT INTO users (name, lastName, email, password, role) VALUES (?, ?, ?, ?, ?);";    
+$tyepsUser = "sssss";
+
+$studentCreated = create($conn, $sqlStudent, $valuesStudent, $typesStudent);
+
+$userCreated = create($conn, $sqlUser, $valuesUser, $tyepsUser);
 
 
-if(!$queryIsSuccessful) {
+if(!$studentCreated && !$userCreated) {
     echo 'Error ' . mysqli_error($conn);
 }
 

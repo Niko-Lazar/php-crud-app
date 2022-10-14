@@ -51,9 +51,8 @@ $values = [
     $mandatory = sanitizeInput($_POST['mandatory']),
 ];
 
-$types = "sssss";
-
 $sql = "INSERT INTO subjects (subjectCode, name, yearOfStudy, ESPB, mandatory) VALUES (?, ?, ?, ?, ?)";
+$types = "sssss";
 
 $subjectCreated = create($conn, $sql, $values, $types);
 
