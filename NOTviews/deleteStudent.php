@@ -20,7 +20,6 @@ if($_SERVER["REQUEST_METHOD"] != 'POST') {
 
 $studentID = $_GET['id'];
 
-
 $sql = "SELECT email FROM students WHERE id = ?";
 $studentEmail = selectByCondition($conn, $sql, $studentID, 's')['email'];
 
@@ -29,7 +28,9 @@ deleteByCondition($conn, $sql, $studentEmail, 's');
 
 delete($conn, 'students', $studentID);
 
-header('Location: ../templates/students.php?student-action=2');
+$_SESSION['flash_message'] = actionMessage('student', 'danger');
+
+header('Location: ../templates/students.php');
 exit();
 
 ?>

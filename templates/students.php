@@ -9,9 +9,14 @@
     <div class="row">
         <table class="table">
 
-                <?php if(!empty($actionMsg)): ?>
-                    <div class="alert <?php echo $actionMsg['msgType']; ?> alert-dismissible fade show" role="alert">
-                    <strong><?php echo $actionMsg['msgContent']; ?></strong>
+                <?php if(isset($_SESSION['flash_message'])): ?>
+                    <div class="alert <?php echo $_SESSION['flash_message']['msgType']; ?> alert-dismissible fade show" role="alert">
+                        <strong>
+                            <?php
+                                echo $_SESSION['flash_message']['msgContent'];
+                                unset($_SESSION['flash_message']);
+                                ?>
+                        </strong>
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>

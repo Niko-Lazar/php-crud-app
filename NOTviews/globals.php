@@ -39,22 +39,18 @@ function userRole() : string {
     return $_SESSION['loggedUser']['role'];
 }
 
-function actionMessage(string $msgFor) : array {
+function actionMessage(string $msgFor, string $msgType) : array {
 
-    $msgContent = $_GET["{$msgFor}-action"] ?? '';
-
-    $msgType = '';
-
-    switch($msgContent) {
-        case '0':
+    switch($msgType) {
+        case 'success':
             $msgContent = "{$msgFor} created successfully";
             $msgType = "alert-success";
             break;
-        case '1':
+        case 'warning':
             $msgContent = "{$msgFor} info updated";
             $msgType = "alert-warning";
             break;
-        case '2':
+        case 'danger':
             $msgContent = "{$msgFor} has been deleted";
             $msgType = "alert-danger";
             break;

@@ -80,7 +80,10 @@ $queryIsSuccessful = mysqli_query($conn, $sql);
 if(!$queryIsSuccessful) {
     echo 'Error ' . mysqli_error($conn);
 }
-header('Location: ../templates/users.php?user-action=0');
+
+$_SESSION['flash_message'] = actionMessage('user', 'success');
+
+header('Location: ../templates/users.php');
 
 exit();
 

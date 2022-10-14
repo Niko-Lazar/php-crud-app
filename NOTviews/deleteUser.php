@@ -44,7 +44,9 @@ if($isStudent) {
     delete($conn, 'users', $userID);
 }
 
-header('Location: ../templates/users.php?user-action=2');
+$_SESSION['flash_message'] = actionMessage('user', 'danger');
+
+header('Location: ../templates/users.php');
 exit();
 
 ?>

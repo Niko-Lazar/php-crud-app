@@ -86,7 +86,9 @@ if(!$queryIsSuccessful) {
     echo 'Error ' . mysqli_error($conn);
 }
 
-header('Location: ../templates/users.php?user-action=1');
+$_SESSION['flash_message'] = actionMessage('user', 'warning');
+
+header('Location: ../templates/users.php');
 exit();
 
 ?>

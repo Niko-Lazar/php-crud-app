@@ -69,7 +69,9 @@ if(!$queryIsSuccessful) {
     echo 'Error ' . mysqli_error($conn);
 }
 
-header('Location: ../templates/subjects.php?subject-action=1');
+$_SESSION['flash_message'] = actionMessage('subject', 'warning');
+
+header('Location: ../templates/subjects.php');
 exit();
 
 ?>

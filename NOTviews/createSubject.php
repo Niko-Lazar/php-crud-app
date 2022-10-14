@@ -60,7 +60,9 @@ if(!$subjectCreated) {
     echo 'Error ' . mysqli_error($conn);
 }
 
-header('Location: ../templates/subjects.php?subject-action=0');
+$_SESSION['flash_message'] = actionMessage('subject', 'success');
+
+header('Location: ../templates/subjects.php');
 exit();
 
 

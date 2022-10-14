@@ -83,8 +83,6 @@ $valuesUser = [
     'student',
 ];
 
-
-
 $sqlStudent = "INSERT INTO students (indexNumber, name, parentsName, lastName, email, phoneNumber, yearOfStudy, dateOfBirth, IDnumber)" .
         "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);";
 $typesStudent = "sssssssss";
@@ -101,7 +99,9 @@ if(!$studentCreated && !$userCreated) {
     echo 'Error ' . mysqli_error($conn);
 }
 
-header('Location: ../templates/students.php?student-action=0');
+$_SESSION['flash_message'] = actionMessage('student', 'success');
+
+header('Location: ../templates/students.php');
 exit();
 
 

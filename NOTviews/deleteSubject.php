@@ -24,7 +24,9 @@ if(!$deleteSubject) {
     echo "Error deleting subject " . $conn->error;
 }
 
-header('Location: ../templates/subjects.php?subject-action=2');
+$_SESSION['flash_message'] = actionMessage('subject', 'danger');
+
+header('Location: ../templates/subjects.php');
 exit();
 
 ?>
