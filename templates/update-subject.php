@@ -8,30 +8,63 @@
                         <legend class="mt-5 mb-5">Update subject</legend>
                         <div class="form-group">
                             <label for="">Subject code</label>
+
+                            <?php if(!empty($subjectErrorFields['subjectCode'])): ?>
+                                <div class="text-danger">
+                                    <?php echo $subjectErrorFields['subjectCode']; ?>
+                                </div>
+                            <?php endif; ?>
                             <input type="text" class="form-control" name="subjectCode"
                             value = "<?php echo $subject['subjectCode']; ?>"
                             required>
                         </div>
                         <div class="form-group">
                             <label for="">Subject name</label>
+
+                            <?php if(!empty($subjectErrorFields['name'])): ?>
+                                <div class="text-danger">
+                                    <?php echo $subjectErrorFields['name']; ?>
+                                </div>
+                            <?php endif; ?>
                             <input type="text"class="form-control" name="name"
                             value = "<?php echo $subject['name']; ?>"
                             required>
                         </div>
                         <div class="form-group">
                             <label for="">Year of Study</label>
+
+                            <?php if(!empty($subjectErrorFields['yearOfStudy'])): ?>
+                                <div class="text-danger">
+                                    <?php echo $subjectErrorFields['yearOfStudy']; ?>
+                                </div>
+                            <?php endif; ?>
+
                             <input type="text"class="form-control" name="yearOfStudy"
                             value = "<?php echo $subject['yearOfStudy']; ?>"
                             required>
                         </div>
                         <div class="form-group">
                             <label for="">ESPB</label>
+
+                            <?php if(!empty($subjectErrorFields['ESPB'])): ?>
+                                <div class="text-danger">
+                                    <?php echo $subjectErrorFields['ESPB']; ?>
+                                </div>
+                            <?php endif; ?>
+
                             <input type="text" class="form-control" name="ESPB"
                             value = "<?php echo $subject['ESPB']; ?>"
                             required>
                         </div>
                         <div class="form-group">
                             <label for="">Type</label>
+
+                            <?php if(!empty($subjectErrorFields['mandatory'])): ?>
+                                <div class="text-danger">
+                                    <?php echo $subjectErrorFields['mandatory']; ?>
+                                </div>
+                            <?php endif; ?>
+
                             <select name="mandatory" class="custom-select">
                                 <option value=""
                                 <?php if($subject['mandatory'] == ""): ?>
