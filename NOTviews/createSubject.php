@@ -1,5 +1,6 @@
 <?php include '../config/database.php' ?>
 <?php require 'globals.php' ?>
+<?php require 'queries.php' ?>
 
 <?php
 
@@ -42,22 +43,26 @@ if(!$allInputsAreValid) {
     return;
 }
 
-$subjectCode = $_POST['subjectCode'];
-$name = $_POST['name'];
-$yearOfStudy = $_POST['yearOfStudy'];
-$ESPB = $_POST['ESPB'];
-$mandatory = sanitizeInput($_POST['mandatory']);
+$values = [
+    $subjectCode = $_POST['subjectCode'],
+    $name = $_POST['name'],
+    $yearOfStudy = $_POST['yearOfStudy'],
+    $ESPB = $_POST['ESPB'],
+    $mandatory = sanitizeInput($_POST['mandatory']),
+];
 
-$sql = "INSERT INTO subjects (subjectCode, name, yearOfStudy, ESPB, mandatory)";
-$sql .= "VALUES ('$subjectCode', '$name', '$yearOfStudy', '$ESPB', '$mandatory')";
+$types = "sssss";
 
-$queryIsSuccessful = mysqli_query($conn, $sql);
+$sql = "INSERT INTO subjects (subjectCode, name, yearOfStudy, ESPB, mandatory) VALUES (?, ?, ?, ?, ?)";
 
-if(!$queryIsSuccessful) {
+$subjectCreated = create($conn, $sql, $values, $types);
+
+if(!$subjectCreated) {
     echo 'Error ' . mysqli_error($conn);
 }
 
 header('Location: ../templates/subjects.php?subject-action=0');
 exit();
+
 
 ?>

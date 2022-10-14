@@ -12,18 +12,11 @@ function select(object $conn, string $tableName) : array {
     return $data;
 }
 
-function selectByCondition(object $conn, string $query, array $conditions, array $types) : array {
-
-    $query = $conn->real_escape_string($query);
-
-    $queryCondtions = implode(',', $conditions);
-    $queryTypes = implode(',', $types);
-    
-    $queryCondtions = $conn->real_escape_string($queryCondtions);
+function selectByCondition(object $conn, string $query, string $condition, string $types) : array {
 
     $statement = $conn->prepare($query);
 
-    $statement->bind_param($queryTypes, ...$conditions);
+    $statement->bind_param($types, $condition);
 
     $statement->execute();
 
@@ -49,24 +42,25 @@ function delete(object $conn, string $tableName, int $id) : bool {
     return $result;
 }
 
-function deleteByCondition(object $conn, string $query, array $conditions, array $types) : bool {
-    $query = $conn->real_escape_string($query);
-
-    $queryCondtions = implode(',', $conditions);
-    $queryTypes = implode(',', $types);
-
-    $queryCondtions = $conn->real_escape_string($queryCondtions);
+function deleteByCondition(object $conn, string $query, string $condition, string $type) : bool {
 
     $statement = $conn->prepare($query);
 
-    $statement->bind_param($queryTypes, ...$conditions);
+    $statement->bind_param($type, $condition);
 
     $result = $statement->execute();
 
     return $result;
 }
 
+function create(object $conn, string $query, array $values, string $types) : bool {
+    
+    $statement = $conn->prepare($query);
+    $statement->bind_param($types, ...$values);
 
+    $result = $statement->execute();
 
+    return $result;
+}
 
 ?>

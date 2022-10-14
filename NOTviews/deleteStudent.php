@@ -24,7 +24,7 @@ $deletor = new Deletor();
 $selector = new Selector(); 
 
 $sql = "SELECT email FROM students WHERE id = ?";
-$studentEmail = selectByCondition($conn, $sql, [$studentID], ['s'])['email'];
+$studentEmail = selectByCondition($conn, $sql, $studentID, 's')['email'];
 
 $sql = "DELETE FROM students WHERE email = ?";
 deleteByCondition($conn, $sql, [$studentEmail], ['s']);

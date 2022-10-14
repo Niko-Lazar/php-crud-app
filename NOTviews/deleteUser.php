@@ -34,11 +34,11 @@ $isStudent = ($userRole == 'student')
 if($isStudent) {
 
     $sql = "SELECT email FROM users WHERE id = ?";
-    $userEmail = selectByCondition($conn, $sql, [$userID], ['s'])['email'];
+    $userEmail = selectByCondition($conn, $sql, $userID, 's')['email'];
 
     $sql = "DELETE FROM students WHERE email = ?";
-    deleteByCondition($conn, $sql, [$userEmail], ['s']);
-    
+    deleteByCondition($conn, $sql, $userEmail, 's');
+
     delete($conn, 'users', $userID);
 } else {
     delete($conn, 'users', $userID);
