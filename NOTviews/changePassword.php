@@ -16,34 +16,32 @@ if(!isset($_POST['submit'])) {
     return;
 }
 
-$oldPassword = $newPassword = $newPasswordRepeat = '';
-$oldPasswordErr = $newPasswordErr = $newPasswordRepeatErr = $passwordMatchErr = '';
+$passwordErrors = [];
 
 if(!$_POST['oldPassword']) {
-    $oldPasswordErr = "Plase enter a valid password";
+    $passwordErrors['oldPassword'] = "Plase enter a valid password";
 }
+
 
 $passwordMatches = password_verify($_POST['oldPassword'], $_SESSION['loggedUser']['password']);
 
 if(!$passwordMatches) {
-    $oldPasswordErr = "Wrong password";
+    $passwordErrors['oldPassword'] = "Wrong password";
 }
 
 if(!$_POST['newPassword']) {
-    $newPassword1Err = "Plase enter a valid password";
+    $passwordErrors['newPassword'] = "Plase enter a valid password";
 }
 
 if(!$_POST['newPasswordRepeat']) {
-    $newPasswordRepeatErr = "Plase enter a valid password";
+    $passwordErrors['newPasswordRepeat'] = "Plase enter a valid password";
 }
 
 if($_POST['newPassword'] != $_POST['newPasswordRepeat']) {
-    $passwordMatchErr = "Passwords do not match";
+    $passwordErrors['passwordMatch'] = "Passwords do not match";
 }
 
-$allInputsAreValid = (!$oldPasswordErr && !$newPasswordErr && !$newPasswordRepeatErr && !$passwordMatchErr);
-
-if(!$allInputsAreValid) {
+if(!!$passwordErrors) {
     return;
 }
 

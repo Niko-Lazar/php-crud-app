@@ -1,5 +1,6 @@
 <?php require '../config/database.php' ?>
 <?php require 'globals.php' ?>
+<?php require 'queries.php' ?>
 <?php
 
 if(!loggedIn()) {
@@ -12,14 +13,10 @@ if(userRole() != "administrator") {
     exit();
 }
 
-$subjectID = $_REQUEST['id'];
+$subjectID = $_GET['id'];
 
-$sql = "SELECT * FROM subjects WHERE id=${subjectID}";
-
-$result = mysqli_query($conn, $sql);
-
-$subject = mysqli_fetch_array($result);
-
+$sql = "SELECT * FROM subjects WHERE id=?";
+$subject = selectByCondition($conn, $sql, $subjectID, 's');
 
 if($_SERVER["REQUEST_METHOD"] != "POST") {
     return;

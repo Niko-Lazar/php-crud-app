@@ -29,9 +29,9 @@
                 <div class="form-group">
                     <label for="email">Email adress</label>
 
-                    <?php if(!empty($emailErr)): ?>
+                    <?php if(!empty($loginErrors['email'])): ?>
                         <div class="text-danger">
-                            <?php echo $emailErr; ?>
+                            <?php echo $loginErrors['email']; ?>
                         </div>
                     <?php endif; ?>
 

@@ -14,9 +14,9 @@
                 <div class="form-group">
                     <label for="password">Old password</label>
 
-                    <?php if(!empty($oldPasswordErr)): ?>
+                    <?php if(!empty($passwordErrors['oldPassword'])): ?>
                         <div class="text-danger">
-                            <?php echo $oldPasswordErr; ?>
+                            <?php echo $passwordErrors['oldPassword']; ?>
                         </div>
                     <?php endif; ?>
                     
@@ -25,14 +25,14 @@
                 <div class="form-group">
                     <label for="password">New password</label>
                     
-                    <?php if(!empty($newPasswordErr) && empty($oldPasswordErr)): ?>
+                    <?php if(!empty($passwordErrors['newPassword']) && empty($passwordErrors['oldPassword'])): ?>
                         <div class="text-danger">
-                            <?php echo $newPasswordErr; ?>
+                            <?php echo $passwordErrors['newPassword']; ?>
                         </div>
                     <?php endif; ?>
-                    <?php if(!empty($passwordMatchErr) && empty($oldPasswordErr)): ?>
+                    <?php if(!empty($passwordErrors['passwordMatch']) && empty($passwordErrors['oldPassword'])): ?>
                         <div class="text-danger">
-                            <?php echo $passwordMatchErr; ?>
+                            <?php echo $passwordErrors['passwordMatch']; ?>
                         </div>
                     <?php endif; ?>
 
@@ -41,9 +41,9 @@
                 <div class="form-group">
                     <label for="password">Repeat new password</label>
                     
-                    <?php if(!empty($newPasswordRepeatErr) && empty($oldPasswordErr)): ?>
+                    <?php if(!empty($passwordErrors['passwordRepeat']) && empty($passwordErrors['oldPassword'])): ?>
                         <div class="text-danger">
-                            <?php echo $newPassword2Err; ?>
+                            <?php echo $passwordErrors['passwordRepeat']; ?>
                         </div>
                     <?php endif; ?>
 

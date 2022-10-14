@@ -17,7 +17,6 @@ if(userRole() != "administrator") {
 $userID = $_REQUEST['id'];
 
 $sql = "SELECT * FROM users WHERE id=?";
-
 $user = selectByCondition($conn, $sql, $userID, 's');
 
 if($user['role'] == 'student') {

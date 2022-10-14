@@ -8,8 +8,7 @@ if(loggedIn()) {
     exit();
 }
 
-$email = $password = '';
-$emailErr = $passwordErr = '';
+$loginErrors = [];
 
 if($_SERVER["REQUEST_METHOD"] != "POST") {
     return;
@@ -20,16 +19,15 @@ if(!isset($_POST["submit"])) {
 }
 
 if(!$_POST['email']) {
-    $emailErr = "Please enter a valid email";
+    $loginErrors['email'] = "Please enter a valid email";
 }
 
 if(!$_POST['password']) {
-    $passwordErr = "Plase enter a valid password";
+    $loginErrors['password'] = "Plase enter a valid password";
 }
 
-$inputIsValid = empty($emailErr) && empty($passwordErr);
 
-if(!$inputIsValid) {
+if(!!$loginErrors) {
     return;
 }
 
