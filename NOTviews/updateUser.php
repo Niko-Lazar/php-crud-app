@@ -25,7 +25,6 @@ if($user['role'] == 'student') {
     $isStudent = true;
 }
 
-
 if($_SERVER["REQUEST_METHOD"] != "POST") {
     return;
 }
@@ -55,14 +54,11 @@ $studentValues = [
     $oldEmail,
 ];
 
-
 if($isStudent) { 
     $sqlStudent = "UPDATE students SET name=?, lastName=?, email=? WHERE email=?";
-    
     $studentResult = createUpdate($conn, $sqlStudent, $studentValues, 'ssss');
 
     $sqlUser = "UPDATE users SET name=?, lastName=?, email=?, password=? WHERE id=?";
-    
     $userResult = createUpdate($conn, $sqlUser, $userValues, 'sssss');
 
     $queryIsSuccessful = $studentResult && $userResult;

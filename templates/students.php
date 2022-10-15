@@ -54,7 +54,7 @@
                             <td><?php echo $student['ESPB']; ?></td>
                             <td><?php echo $student['GPA']; ?></td>
                             <td class="row justify-content-center" style="margin: 0;">
-                                <a href="" role="button" class="text-primary mx-1">
+                                <a href="student.php?id=<?php echo $student['id']; ?>" role="button" class="text-primary mx-1">
                                     <i class="fas fa-eye"></i>
                                 </a>
                                 <a href="update-student.php?id=<?php echo $student['id']; ?>" role="button" class="text-warning mx-1">
