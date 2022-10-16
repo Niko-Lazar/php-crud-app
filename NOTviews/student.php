@@ -32,19 +32,7 @@ if(!isset($_POST['submit'])) {
     return;
 }
 
-$gradesErrorFields = [];
-
-if(!$_POST['subjectID'] || !is_numeric($_POST['subjectID'])) {
-    $gradesErrorFields['subjectID'] = "Please select a valid subject";
-}
-
-if(!$_POST['grade'] || !is_numeric($_POST['grade'])) {
-    $gradesErrorFields['grade'] = "Please enter a valid grade";
-}
-
-if(!$_POST['date']) {
-    $gradesErrorFields['date'] = "Please select a valid date";
-}
+$gradesErrorFields = checkGradingFields();
 
 if(!!$gradesErrorFields) {
     return;
