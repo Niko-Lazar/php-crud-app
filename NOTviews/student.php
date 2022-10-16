@@ -57,9 +57,33 @@ if(!$studentGraded) {
     return;
 }
 
+// calc espb & gpa
+$sqlESPB = "SELECT SUM(espb) AS ESPB FROM subjects WHERE id IN (SELECT subjectID FROM grades WHERE studentID=?)";
+
+$ESPBresult = selectByCondition($conn, $sqlESPB, $studentID, 's');
+
+$sqlGPA = "SELECT AVG(grade) AS GPA FROM grades WHERE studentID=?";
+
+$GPAresult = selectByCondition($conn, $sqlGPA, $studentID, 's');
+
+$sqlUpdateStudent = "UPDATE students SET GPA=?, ESPB=? WHERE id = ?";
+
+$updateStudentValues = [
+    $GPAresult['GPA'],
+    $ESPBresult['ESPB'],
+    $studentID,
+];
+
+$updateStudentResult = createUpdate($conn, $sqlUpdateStudent, $updateStudentValues, "sss");
+
+if(!$updateStudentResult) {
+    return;
+}
+
 $_SESSION['flash_message'] = gradeMessages('success');
 
 header("Location: ../templates/student.php?id={$studentID}");
 exit();
+
 
 ?>
