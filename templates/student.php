@@ -192,8 +192,8 @@
                             </div>
                             <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Return</button>
-                            <form action="" method="POST">
-                                <button role="button" class="btn btn-danger">Delete</button  >
+                            <form action="../NOTviews/deleteGrade.php?student=<?php echo $grade['studentID']; ?>&subject=<?php echo $grade['subjectID']; ?>" method="POST">
+                                <button role="button" class="btn btn-danger">Delete</button>
                             </form>
                             </div>
                         </div>

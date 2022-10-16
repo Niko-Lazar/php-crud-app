@@ -78,4 +78,13 @@ function createUpdate(object $conn, string $query, array $values, string $types)
     return $result;
 }
 
+function executeQuery($conn, $query, array $values, string $types) : bool {
+    $statement = $conn->prepare($query);
+    $statement->bind_param($types, ...$values);
+
+    $result = $statement->execute();
+
+    return $result;
+}
+
 ?>
