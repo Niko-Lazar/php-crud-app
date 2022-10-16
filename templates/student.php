@@ -83,6 +83,21 @@
         </div>
         <div class="col-6 mt-5">
             <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']) . "?id=$studentID"; ?>" method="POST">
+            
+                <?php if(isset($_SESSION['flash_message'])): ?>
+                        <div class="alert <?php echo $_SESSION['flash_message']['msgType']; ?> alert-dismissible fade show" role="alert">
+                            <strong>
+                                <?php
+                                    echo $_SESSION['flash_message']['msgContent'];
+                                    unset($_SESSION['flash_message']);
+                                    ?>
+                            </strong>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        </div>
+                    <?php endif; ?>
+
                 <div class="form-group">
                     <label for="">Subject</label>
                     <select name="subjectID"class="custom-select">

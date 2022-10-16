@@ -51,15 +51,15 @@ $sqlGrade = "INSERT INTO grades (studentID, subjectID, grade, date) VALUES (?, ?
 
 $studentGraded = createUpdate($conn, $sqlGrade, $gradeValues, 'ssss');
 
-
-var_dump($gradesErrorFields);
-
 if(!$studentGraded) {
-    echo 'Error ' . mysqli_error($conn);
+    $_SESSION['flash_message'] = gradeMessages('danger');
+
+    return;
 }
 
-header("Location: ../templates/student.php?id={$studentID}");
+$_SESSION['flash_message'] = gradeMessages('success');
 
+header("Location: ../templates/student.php?id={$studentID}");
 exit();
 
 ?>

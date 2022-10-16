@@ -67,8 +67,33 @@ function actionMessage(string $msgFor, string $msgType) : array {
 
     return [
         "msgContent" => $msgContent,
-        'msgType' => $msgType,
+        "msgType" => $msgType,
     ];
 }
+
+function gradeMessages(string $msgType) : array {
+
+    switch($msgType) {
+        case 'success':
+            $msgContent = "Grade submited";
+            $msgType = "text-success";
+            break;
+        case 'danger':
+            $msgContent = "Error in submiting grade";
+            $msgType = "text-danger";
+            break;
+        default:
+            $msgContent = "";
+            $msgType = "";
+            break;
+    }
+
+    return [
+        "msgContent" => $msgContent,
+        "msgType" => $msgType,
+    ];
+}
+
+
 
 ?>
