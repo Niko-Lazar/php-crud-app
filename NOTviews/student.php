@@ -24,6 +24,10 @@ $student = selectByCondition($conn, $sql, $studentID, 's');
 
 $subjects = select($conn, 'subjects');
 
+$sqlGrades = "SELECT * FROM grades g INNER JOIN subjects s ON s.id = g.subjectID WHERE g.studentID = ?";
+
+$grades = selectByConditionAll($conn, $sqlGrades, $studentID, 's');
+
 if($_SERVER["REQUEST_METHOD"] != "POST") {
     return;
 }

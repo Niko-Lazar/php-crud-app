@@ -24,10 +24,24 @@ function selectByCondition(object $conn, string $query, string $condition, strin
 
     $data = $result->fetch_assoc();
 
-    
-    
     return $data;
 }
+
+function selectByConditionAll(object $conn, string $query, string $condition, string $types) {
+
+    $statement = $conn->prepare($query);
+
+    $statement->bind_param($types, $condition);
+
+    $statement->execute();
+
+    $result = $statement->get_result();
+
+    $data = $result->fetch_all(MYSQLI_ASSOC);
+
+    return $data;
+}
+
 
 function delete(object $conn, string $tableName, int $id) : bool {
     $tableName = $conn->real_escape_string($tableName);
