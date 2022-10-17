@@ -173,11 +173,9 @@
                     <td><?php echo $grade['grade']; ?></td>
                     <td><?php echo $grade['date']; ?></td>
                     <td class="row" style="margin: 0;">
-                        <form action="" method="POST">
-                            <a href="" role="button" class="text-warning mx-1">
+                        <a href="update-subject.php?id=<?php echo $grade['subjectID']; ?>" role="button" class="text-warning mx-1">
                                 <i class="fas fa-edit"></i>
-                            </a>
-                        </form>
+                        </a>
                         <button class="icon-btn red mx-1 delete_btn" data-toggle="modal" data-target=#deleteGrade<?php echo $grade['id']; ?>>
                             <i class="fas fa-trash-alt"></i>
                         </button>
